@@ -29,8 +29,7 @@ const ContactSection = () => {
           course: formData.course,
           message: formData.message.trim(),
           pageUrl: window.location.href,
-          userAgent: navigator.userAgent,
-          submittedAt: new Date().toISOString(),
+          submittedAt: new Date().toISOString().slice(0, 10),
         });
 
         const url = leadsheetWebhookUrl.includes("?")
