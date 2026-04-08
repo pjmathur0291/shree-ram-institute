@@ -20,7 +20,7 @@ const Navbar = () => {
       <div className="container mx-auto flex items-center justify-between h-16 md:h-20 px-4">
         <a href="#hero" className="flex items-center gap-2">
           <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center">
-            <span className="font-display text-primary-foreground text-sm font-bold">श्रीs</span>
+            <span className="font-display text-primary-foreground text-sm font-bold">श्री</span>
           </div>
           <div className="leading-tight">
             <span className="font-display text-lg font-bold text-foreground">Ram Institute</span>

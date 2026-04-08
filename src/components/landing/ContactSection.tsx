@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import { Phone, MapPin, Send, MessageCircle, Shield } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 const ContactSection = () => {
   const navigate = useNavigate();
+  const leadsheetWebhookUrl = useMemo(() => import.meta.env.VITE_LEADSHEET_WEBHOOK_URL as string | undefined, []);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
@@ -13,11 +15,34 @@ const ContactSection = () => {
     message: "",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const whatsappText = `Hi! I'm ${formData.name}. I'm interested in ${formData.course || "Culinary Arts & Bakery"} course at Shri Ram Institute. Please call me back. Phone: ${formData.phone}`;
-    window.open(`https://wa.me/917055547000?text=${encodeURIComponent(whatsappText)}`, "_blank");
-    navigate("/thank-you");
+    if (isSubmitting) return;
+
+    setIsSubmitting(true);
+    try {
+      if (leadsheetWebhookUrl) {
+        const payload = new URLSearchParams({
+          name: formData.name.trim(),
+          phone: formData.phone.trim(),
+          email: formData.email.trim(),
+          course: formData.course,
+          message: formData.message.trim(),
+          pageUrl: window.location.href,
+          userAgent: navigator.userAgent,
+          submittedAt: new Date().toISOString(),
+        });
+
+        const url = leadsheetWebhookUrl.includes("?")
+          ? `${leadsheetWebhookUrl}&${payload.toString()}`
+          : `${leadsheetWebhookUrl}?${payload.toString()}`;
+
+        await fetch(url, { method: "GET" });
+      }
+      navigate("/thank-you");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -108,7 +133,8 @@ const ContactSection = () => {
                 />
                 <input
                   type="email"
-                  placeholder="Email Address (Optional)"
+                  placeholder="Email Address *"
+                  required
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground text-sm focus:ring-2 focus:ring-primary/30 focus:border-primary outline-none transition-all"
@@ -116,6 +142,7 @@ const ContactSection = () => {
                 <select
                   value={formData.course}
                   onChange={(e) => setFormData({ ...formData, course: e.target.value })}
+                  required
                   className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground text-sm focus:ring-2 focus:ring-primary/30 focus:border-primary outline-none transition-all"
                 >
                   <option value="">Select Course *</option>
@@ -133,10 +160,11 @@ const ContactSection = () => {
                 />
                 <button
                   type="submit"
+                  disabled={isSubmitting}
                   className="w-full bg-gradient-gold text-charcoal py-3.5 rounded-lg font-bold text-sm hover:shadow-lg hover:shadow-gold/30 transition-all flex items-center justify-center gap-2"
                 >
                   <Send className="w-4 h-4" />
-                  Submit & Get Callback
+                  {isSubmitting ? "Submitting..." : "Submit & Get Callback"}
                 </button>
               </div>
 
