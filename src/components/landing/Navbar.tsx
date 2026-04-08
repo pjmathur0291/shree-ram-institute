@@ -16,16 +16,17 @@ const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-md border-b border-border">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-foreground/95 backdrop-blur-md border-b border-background/10">
       <div className="container mx-auto flex items-center justify-between h-16 md:h-20 px-4">
         <a href="#hero" className="flex items-center gap-2">
-          <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center">
-            <span className="font-display text-primary-foreground text-sm font-bold">श्री</span>
-          </div>
-          <div className="leading-tight">
-            <span className="font-display text-lg font-bold text-foreground">Ram Institute</span>
-            <span className="block text-xs text-muted-foreground">Culinary Arts & Bakery</span>
-          </div>
+          <img
+            src={encodeURI("/logo (1).webp")}
+            alt="Shri Ram Institute logo"
+            className="w-16 h-16 md:w-20 md:h-20 rounded-none object-contain p-2 shadow-sm"
+            width={80}
+            height={80}
+            loading="eager"
+          />
         </a>
 
         <div className="hidden lg:flex items-center gap-6">
@@ -33,7 +34,7 @@ const Navbar = () => {
             <a
               key={link.label}
               href={link.href}
-              className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
+              className="text-sm font-medium text-background/70 hover:text-background transition-colors"
             >
               {link.label}
             </a>
@@ -41,20 +42,20 @@ const Navbar = () => {
         </div>
 
         <div className="hidden md:flex items-center gap-3">
-          <a href="tel:+917055547000" className="flex items-center gap-2 text-sm font-medium text-primary">
-            <Phone className="w-4 h-4" />
+          <a href="tel:+917055547000" className="flex items-center gap-2 text-sm font-medium text-background/80 hover:text-background transition-colors">
+            <Phone className="w-4 h-4 text-accent" />
             +91 7055547000
           </a>
           <a
             href="#contact"
-            className="bg-primary text-primary-foreground px-5 py-2.5 rounded-lg text-sm font-semibold hover:opacity-90 transition-opacity"
+            className="bg-gradient-gold text-charcoal px-5 py-2.5 rounded-lg text-sm font-semibold hover:shadow-lg hover:shadow-gold/20 transition-all"
           >
             Apply Now
           </a>
         </div>
 
         <button
-          className="lg:hidden p-2 text-foreground"
+          className="lg:hidden p-2 text-background"
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-label="Toggle menu"
         >
@@ -68,14 +69,14 @@ const Navbar = () => {
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            className="lg:hidden bg-background border-b border-border overflow-hidden"
+            className="lg:hidden bg-foreground border-b border-background/10 overflow-hidden"
           >
             <div className="px-4 py-4 space-y-3">
               {navLinks.map((link) => (
                 <a
                   key={link.label}
                   href={link.href}
-                  className="block text-sm font-medium text-muted-foreground hover:text-primary py-1"
+                  className="block text-sm font-medium text-background/70 hover:text-background py-1"
                   onClick={() => setMobileOpen(false)}
                 >
                   {link.label}
@@ -83,7 +84,7 @@ const Navbar = () => {
               ))}
               <a
                 href="#contact"
-                className="block bg-primary text-primary-foreground px-5 py-2.5 rounded-lg text-sm font-semibold text-center mt-3"
+                className="block bg-gradient-gold text-charcoal px-5 py-2.5 rounded-lg text-sm font-semibold text-center mt-3"
                 onClick={() => setMobileOpen(false)}
               >
                 Apply Now

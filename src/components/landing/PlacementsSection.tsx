@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
-import graduates from "@/assets/graduates.jpg";
-import hotelChef from "@/assets/hotel-chef.jpg";
-import studentSuccess from "@/assets/student-success.jpg";
+const graduates = encodeURI("/images/Abhishekh Rawat Ram Bagh Palace 1.webp");
+const hotelChef = encodeURI("/images/Amit Giri Taj Rambagh Jaipur 1.webp");
+const studentSuccess = encodeURI("/images/Ankit Shrivastava - ITC 1.webp");
 
 const placementStats = [
   { value: "300+", label: "Students at Taj Hotels" },

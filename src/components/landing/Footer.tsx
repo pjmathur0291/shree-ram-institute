@@ -5,13 +5,14 @@ const Footer = () => {
         <div className="grid md:grid-cols-3 gap-8 mb-8">
           <div>
             <div className="flex items-center gap-2 mb-3">
-              <div className="w-9 h-9 rounded-full bg-accent flex items-center justify-center">
-                <span className="font-display text-charcoal text-xs font-bold">श्री</span>
-              </div>
-              <div>
-                <p className="font-display font-bold text-background">Shri Ram Institute</p>
-                <p className="text-xs text-background/50">Est. 1999 · Dehradun, Uttarakhand</p>
-              </div>
+              <img
+                src={encodeURI("/logo (1).webp")}
+                alt="Shri Ram Institute logo"
+                className="w-16 h-16 rounded-none object-contain p-2 shadow-sm"
+                width={64}
+                height={64}
+                loading="lazy"
+              />
             </div>
             <p className="text-sm text-background/60 leading-relaxed">
               Uttarakhand's oldest & most trusted institute for Hotel Management, Culinary Arts & Bakery courses. Affiliated to Shri Dev Suman Uttarakhand University.
@@ -41,7 +42,7 @@ const Footer = () => {
         </div>
 
         <div className="border-t border-background/10 pt-6 text-center text-xs text-background/40">
-          <p>© {new Date().getFullYear()} Shri Ram Institute, Dehradun. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Shri Ram Institute, Dehradun. All rights reserved. Design and Developed by Mediagarh</p>
         </div>
       </div>
     </footer>

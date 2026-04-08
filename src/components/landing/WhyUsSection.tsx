@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { GraduationCap, Globe, Utensils, Users, BookOpen, MapPin, Award, ShieldCheck } from "lucide-react";
-import trainingKitchen from "@/assets/training-kitchen.jpg";
+const trainingKitchen = encodeURI("/images/IMG-20250415-WA0046~2 1.webp");
 
 const usps = [
   { icon: GraduationCap, title: "25+ Years of Excellence", desc: "Uttarakhand's oldest & most trusted culinary institute, est. 1999" },

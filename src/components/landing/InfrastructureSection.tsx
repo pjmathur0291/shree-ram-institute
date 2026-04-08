@@ -1,10 +1,10 @@
 import { motion } from "framer-motion";
-import chefInstructor from "@/assets/chef-instructor.jpg";
-import breadMaking from "@/assets/bread-making.jpg";
-import bakingTools from "@/assets/baking-tools.jpg";
-import fineDesert from "@/assets/fine-dessert.jpg";
-import cakeDisplay from "@/assets/cake-display.jpg";
-import campus from "@/assets/campus.jpg";
+const chefInstructor = encodeURI("/images/Anubhav Semwal The Oberoi_s New Delhi 1.webp");
+const breadMaking = encodeURI("/images/Kartik Kumar Hyatt Regency Dehradun 1.webp");
+const bakingTools = encodeURI("/images/Kartik Kumar Hyatt Regency Dehradun 1 1.webp");
+const fineDesert = encodeURI("/images/img3 1 1.webp");
+const cakeDisplay = encodeURI("/images/Chirag Devi Ratn 1.webp");
+const campus = encodeURI("/images/IMG-20250415-WA0046~2 1.webp");
 
 const images = [
   { src: chefInstructor, alt: "Chef instructor demonstrating techniques", span: "md:col-span-2" },

@@ -1,14 +1,12 @@
 import { motion } from "framer-motion";
 import { Clock, BookOpen, ArrowRight } from "lucide-react";
-import bakeryKitchen from "@/assets/bakery-kitchen.jpg";
-import culinaryPlating from "@/assets/culinary-plating.jpg";
-import chocolateArt from "@/assets/chocolate-art.jpg";
-import pastryDisplay from "@/assets/pastry-display.jpg";
+
+const img = (filename: string) => encodeURI(`/images/${filename}`);
 
 const courses = [
   {
     title: "Diploma in Culinary Arts",
-    image: culinaryPlating,
+    image: img("10564131615811079229 1.webp"),
     duration: "1 Year",
     eligibility: "10th / 10+2 Pass",
     highlights: [
@@ -21,7 +19,7 @@ const courses = [
   },
   {
     title: "Diploma in Bakery & Confectionery",
-    image: bakeryKitchen,
+    image: img("16594930683104909379 1.webp"),
     duration: "6 Months – 1 Year",
     eligibility: "10th Pass",
     highlights: [
@@ -34,7 +32,7 @@ const courses = [
   },
   {
     title: "Certificate in Chocolate & Confections",
-    image: chocolateArt,
+    image: img("2885978586941839691 1.webp"),
     duration: "6 Months",
     eligibility: "10th Pass",
     highlights: [
@@ -47,7 +45,7 @@ const courses = [
   },
   {
     title: "Advanced Pastry Arts",
-    image: pastryDisplay,
+    image: img("img3 1.webp"),
     duration: "6 Months",
     eligibility: "Basic Culinary Knowledge",
     highlights: [
