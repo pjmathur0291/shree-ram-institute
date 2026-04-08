@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Phone, MapPin, Send, MessageCircle, Shield } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const ContactSection = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
@@ -15,6 +17,7 @@ const ContactSection = () => {
     e.preventDefault();
     const whatsappText = `Hi! I'm ${formData.name}. I'm interested in ${formData.course || "Culinary Arts & Bakery"} course at Shri Ram Institute. Please call me back. Phone: ${formData.phone}`;
     window.open(`https://wa.me/917055547000?text=${encodeURIComponent(whatsappText)}`, "_blank");
+    navigate("/thank-you");
   };
 
   return (
