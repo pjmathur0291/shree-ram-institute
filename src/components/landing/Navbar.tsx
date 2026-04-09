@@ -23,7 +23,7 @@ const Navbar = () => {
             src={encodeURI("/logo (1).webp")}
             alt="Shri Ram Institute logo"
             className="w-16 h-16 md:w-20 md:h-20 rounded-none object-contain p-2 shadow-sm"
-            width={80}
+            width={200}
             height={80}
             loading="eager"
           />
