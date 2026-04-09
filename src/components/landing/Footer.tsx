@@ -8,7 +8,7 @@ const Footer = () => {
               <img
                 src={encodeURI("/logo (1).webp")}
                 alt="Shri Ram Institute logo"
-                className="w-16 h-16 rounded-none object-contain p-2 shadow-sm"
+                className="w-22 h-16 rounded-none object-contain p-2 shadow-sm"
                 width={200}
                 height={64}
                 loading="lazy"

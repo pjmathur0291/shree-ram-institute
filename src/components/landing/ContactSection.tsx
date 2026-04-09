@@ -88,8 +88,7 @@ const ContactSection = () => {
               </a>
 
               <a
-                href="https://maps.app.goo.gl/CzmWCZRHeKXQc3aU8"
-                target="_blank"
+                href="#"
                 rel="noopener noreferrer"
                 className="flex items-center gap-4 group"
               >
