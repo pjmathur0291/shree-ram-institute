@@ -17,13 +17,13 @@ const Navbar = () => {
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-foreground/95 backdrop-blur-md border-b border-background/10">
-      <div className="container mx-auto flex items-center justify-between h-16 md:h-20 px-4">
+      <div className="container mx-auto flex items-center justify-between h-24 md:h-28 px-4">
         <a href="#hero" className="flex items-center gap-2">
           <img
             src={encodeURI("/logo (1).webp")}
             alt="Shri Ram Institute logo"
-            className="w-16 h-16 md:w-20 md:h-20 rounded-none object-contain p-2 shadow-sm"
-            width={200}
+            className="block shrink-0 w-28 h-16 md:w-36 md:h-20 rounded-none object-contain p-2 shadow-sm max-w-none max-h-none"
+            width={144}
             height={80}
             loading="eager"
           />

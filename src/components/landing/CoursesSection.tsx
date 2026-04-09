@@ -30,32 +30,32 @@ const courses = [
     ],
     badge: "High Demand",
   },
-  {
-    title: "Certificate in Chocolate & Confections",
-    image: img("2885978586941839691 1.webp"),
-    duration: "6 Months",
-    eligibility: "10th Pass",
-    highlights: [
-      "Bean-to-Bar Chocolate Making",
-      "Truffle & Bonbon Techniques",
-      "Showpiece & Centerpiece Design",
-      "FSSAI & HACCP Certification",
-    ],
-    badge: null,
-  },
-  {
-    title: "Advanced Pastry Arts",
-    image: img("img3 1.webp"),
-    duration: "6 Months",
-    eligibility: "Basic Culinary Knowledge",
-    highlights: [
-      "French Patisserie Techniques",
-      "Plated Desserts & Petit Fours",
-      "Wedding & Celebration Cakes",
-      "Menu Planning & Costing",
-    ],
-    badge: "New",
-  },
+  // {
+  //   title: "Certificate in Chocolate & Confections",
+  //   image: img("2885978586941839691 1.webp"),
+  //   duration: "6 Months",
+  //   eligibility: "10th Pass",
+  //   highlights: [
+  //     "Bean-to-Bar Chocolate Making",
+  //     "Truffle & Bonbon Techniques",
+  //     "Showpiece & Centerpiece Design",
+  //     "FSSAI & HACCP Certification",
+  //   ],
+  //   badge: null,
+  // },
+  // {
+  //   title: "Advanced Pastry Arts",
+  //   image: img("img3 1.webp"),
+  //   duration: "6 Months",
+  //   eligibility: "Basic Culinary Knowledge",
+  //   highlights: [
+  //     "French Patisserie Techniques",
+  //     "Plated Desserts & Petit Fours",
+  //     "Wedding & Celebration Cakes",
+  //     "Menu Planning & Costing",
+  //   ],
+  //   badge: "New",
+  // },
 ];
 
 const CoursesSection = () => {
