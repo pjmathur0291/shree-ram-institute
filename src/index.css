@@ -121,3 +121,9 @@
     @apply bg-card/80 backdrop-blur-md border border-border/50 rounded-xl shadow-lg;
   }
 }
+@media (max-width: 749px) {
+  .container {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+  }
+}

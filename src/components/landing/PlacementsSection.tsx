@@ -1,7 +1,25 @@
 import { motion } from "framer-motion";
-const graduates = encodeURI("/images/Abhishekh Rawat Ram Bagh Palace 1.webp");
-const hotelChef = encodeURI("/images/Amit Giri Taj Rambagh Jaipur 1.webp");
-const studentSuccess = encodeURI("/images/Ankit Shrivastava - ITC 1.webp");
+
+const placement = (filename: string) => encodeURI(`/images/placement/${filename}`);
+const oberoi = (filename: string) => encodeURI(`/images/oberei/${filename}`);
+
+const placementCollage = {
+  hero: placement("taj-rambagh-group 1.webp"),
+  leftTop: placement("taj-rambagh-palace-2 1.webp"),
+  leftMid: placement("taj-selection 1.webp"),
+  leftBottom: placement("taj-club 1.webp"),
+  rightTop: placement("taj-rambagh-palace-1 1.webp"),
+  rightMid: placement("monika-taj 1.webp"),
+  rightBottom: placement("chandra-taj-devi-ratan 1.webp"),
+} as const;
+
+const oberoiCollage = {
+  hero: oberoi("kajal-oberoi-sukhvillas 1.webp"),
+  leftTop: oberoi("amisha-oberoi-gurugram 1.webp"),
+  leftBottom: oberoi("oberoi-udai-vilas 1.webp"),
+  rightTop: oberoi("jigme-oberoi-sukhvillas 1.webp"),
+  rightBottom: oberoi("oberoi-rajvilas 1.webp"),
+} as const;
 
 const placementStats = [
   { value: "300+", label: "Students at Taj Hotels" },
@@ -50,31 +68,230 @@ const PlacementsSection = () => {
           ))}
         </div>
 
-        <div className="grid md:grid-cols-3 gap-6 mb-14">
-          {[
-            { img: graduates, alt: "Culinary graduates celebrating" },
-            { img: hotelChef, alt: "Student working as chef in 5-star hotel" },
-            { img: studentSuccess, alt: "Bakery student with her creation" },
-          ].map((item, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.15 }}
-              className="rounded-xl overflow-hidden"
-            >
-              <img
-                src={item.img}
-                alt={item.alt}
-                className="w-full h-64 object-cover hover:scale-105 transition-transform duration-500"
-                loading="lazy"
-                width={800}
-                height={600}
-              />
-            </motion.div>
-          ))}
-        </div>
+        <motion.div
+          initial={{ opacity: 0, y: 18 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mb-14"
+        >
+          <div className="flex items-center justify-center gap-3 mb-8">
+            <span className="px-5 py-2 rounded-full bg-primary-foreground text-primary border border-accent/40 shadow-sm">
+              <span className="font-display font-bold">TAJ</span>{" "}
+              <span className="text-sm opacity-80">Hotels</span>
+            </span>
+            <span className="px-5 py-2 rounded-full bg-gradient-gold text-charcoal font-display font-bold shadow-sm">
+              Rambagh Palace
+            </span>
+          </div>
+
+          <div className="relative mx-auto max-w-6xl">
+            {/* Mobile/tablet: show all images in a grid */}
+            <div className="grid grid-cols-2 gap-4 lg:hidden">
+              {[
+                placementCollage.leftTop,
+                placementCollage.rightTop,
+                placementCollage.leftMid,
+                placementCollage.rightMid,
+                placementCollage.leftBottom,
+                placementCollage.rightBottom,
+              ].map((src) => (
+                <div key={src} className="rounded-2xl overflow-hidden shadow-lg ring-1 ring-primary-foreground/10">
+                  <img
+                    src={src}
+                    alt="Student placement moment"
+                    className="w-full h-40 sm:h-48 object-cover"
+                    loading="lazy"
+                    width={700}
+                    height={500}
+                  />
+                </div>
+              ))}
+
+              <div className="col-span-2 relative rounded-3xl overflow-hidden shadow-2xl ring-2 ring-accent/60 bg-primary-foreground/5">
+                <img
+                  src={placementCollage.hero}
+                  alt="Students placed at Taj Rambagh Palace"
+                  className="w-full h-[260px] sm:h-[340px] object-cover"
+                  loading="lazy"
+                  width={1200}
+                  height={800}
+                />
+                <div className="absolute bottom-4 left-1/2 -translate-x-1/2">
+                  <span className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-gradient-gold text-charcoal font-display font-bold shadow-lg">
+                    Taj Rambagh Palace
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* Desktop: left + hero + right stacks */}
+            <div className="hidden lg:grid grid-cols-[1fr_1.6fr_1fr] gap-6 items-center">
+              <div className="flex flex-col gap-6">
+                {[placementCollage.leftTop, placementCollage.leftMid, placementCollage.leftBottom].map((src, i) => (
+                  <div
+                    key={src}
+                    className={[
+                      "rounded-2xl overflow-hidden shadow-lg ring-1 ring-primary-foreground/10",
+                      i === 1 ? "ml-10" : "",
+                    ].join(" ")}
+                  >
+                    <img
+                      src={src}
+                      alt="Student placement moment"
+                      className="w-full h-40 object-cover"
+                      loading="lazy"
+                      width={600}
+                      height={400}
+                    />
+                  </div>
+                ))}
+              </div>
+
+              <div className="relative rounded-3xl overflow-hidden shadow-2xl ring-2 ring-accent/60 bg-primary-foreground/5">
+                <img
+                  src={placementCollage.hero}
+                  alt="Students placed at Taj Rambagh Palace"
+                  className="w-full h-[420px] object-cover"
+                  loading="lazy"
+                  width={1200}
+                  height={800}
+                />
+                <div className="absolute bottom-4 left-1/2 -translate-x-1/2">
+                  <span className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-gradient-gold text-charcoal font-display font-bold shadow-lg">
+                    Taj Rambagh Palace
+                  </span>
+                </div>
+              </div>
+
+              <div className="flex flex-col gap-6">
+                {[placementCollage.rightTop, placementCollage.rightMid, placementCollage.rightBottom].map((src, i) => (
+                  <div
+                    key={src}
+                    className={[
+                      "rounded-2xl overflow-hidden shadow-lg ring-1 ring-primary-foreground/10",
+                      i === 1 ? "mr-10" : "",
+                    ].join(" ")}
+                  >
+                    <img
+                      src={src}
+                      alt="Student placement moment"
+                      className="w-full h-40 object-cover"
+                      loading="lazy"
+                      width={600}
+                      height={400}
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <p className="text-center text-sm text-primary-foreground/70 mt-6">
+            Actual pictures of our students placed at Taj Hotels
+          </p>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 18 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mb-14"
+        >
+          <div className="flex items-center justify-center mb-8">
+            <span className="px-10 py-3 rounded-2xl bg-primary-foreground text-primary border border-accent/40 shadow-sm font-display font-bold text-2xl tracking-wide">
+              THE OBEROI
+            </span>
+          </div>
+
+          <div className="relative mx-auto max-w-6xl">
+            {/* Mobile/tablet: show all images in a grid */}
+            <div className="grid grid-cols-2 gap-4 lg:hidden">
+              {[oberoiCollage.leftTop, oberoiCollage.rightTop, oberoiCollage.leftBottom, oberoiCollage.rightBottom].map((src) => (
+                <div key={src} className="rounded-2xl overflow-hidden shadow-lg ring-1 ring-primary-foreground/10">
+                  <img
+                    src={src}
+                    alt="Student placement moment at Oberoi"
+                    className="w-full h-48 sm:h-56 object-cover"
+                    loading="lazy"
+                    width={700}
+                    height={500}
+                  />
+                </div>
+              ))}
+
+              <div className="col-span-2 relative rounded-3xl overflow-hidden shadow-2xl ring-2 ring-accent/60 bg-primary-foreground/5">
+                <img
+                  src={oberoiCollage.hero}
+                  alt="Students placed at The Oberoi"
+                  className="w-full h-[260px] sm:h-[340px] object-cover"
+                  loading="lazy"
+                  width={1200}
+                  height={800}
+                />
+              </div>
+            </div>
+
+            {/* Desktop: left + hero + right stacks */}
+            <div className="hidden lg:grid grid-cols-[1fr_1.6fr_1fr] gap-6 items-center">
+              <div className="flex flex-col gap-6">
+                {[oberoiCollage.leftTop, oberoiCollage.leftBottom].map((src, i) => (
+                  <div
+                    key={src}
+                    className={[
+                      "rounded-2xl overflow-hidden shadow-lg ring-1 ring-primary-foreground/10",
+                      i === 0 ? "ml-6" : "",
+                    ].join(" ")}
+                  >
+                    <img
+                      src={src}
+                      alt="Student placement moment at Oberoi"
+                      className="w-full h-56 object-cover"
+                      loading="lazy"
+                      width={700}
+                      height={500}
+                    />
+                  </div>
+                ))}
+              </div>
+
+              <div className="relative rounded-3xl overflow-hidden shadow-2xl ring-2 ring-accent/60 bg-primary-foreground/5">
+                <img
+                  src={oberoiCollage.hero}
+                  alt="Students placed at The Oberoi"
+                  className="w-full h-[420px] object-cover"
+                  loading="lazy"
+                  width={1200}
+                  height={800}
+                />
+              </div>
+
+              <div className="flex flex-col gap-6">
+                {[oberoiCollage.rightTop, oberoiCollage.rightBottom].map((src, i) => (
+                  <div
+                    key={src}
+                    className={[
+                      "rounded-2xl overflow-hidden shadow-lg ring-1 ring-primary-foreground/10",
+                      i === 0 ? "mr-6" : "",
+                    ].join(" ")}
+                  >
+                    <img
+                      src={src}
+                      alt="Student placement moment at Oberoi"
+                      className="w-full h-56 object-cover"
+                      loading="lazy"
+                      width={700}
+                      height={500}
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <p className="text-center text-sm text-primary-foreground/70 mt-6">
+            Actual pictures of our students placed at Oberoi Hotels
+          </p>
+        </motion.div>
 
         <motion.div
           initial={{ opacity: 0 }}

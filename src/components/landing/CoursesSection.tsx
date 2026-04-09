@@ -87,11 +87,11 @@ const CoursesSection = () => {
               transition={{ delay: i * 0.1 }}
               className="glass-card overflow-hidden group hover:shadow-2xl transition-all"
             >
-              <div className="relative h-52 overflow-hidden">
+              <div className="relative h-72 sm:h-80 overflow-hidden">
                 <img
                   src={course.image}
                   alt={course.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  className="w-full h-full object-cover object-[50%_20%] group-hover:scale-105 transition-transform duration-500"
                   loading="lazy"
                   width={800}
                   height={600}
