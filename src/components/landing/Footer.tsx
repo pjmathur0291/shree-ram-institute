@@ -1,3 +1,5 @@
+const logoSrc = encodeURI("/images/SHRI RAM _LOGO_page-0001 1.webp");
+
 const Footer = () => {
   return (
     <footer className="bg-foreground text-background/80 py-10">
@@ -6,11 +8,11 @@ const Footer = () => {
           <div>
             <div className="flex items-center gap-2 mb-3">
               <img
-                src={encodeURI("/logo (1).webp")}
+                src={logoSrc}
                 alt="Shri Ram Institute logo"
-                className="w-32 h-20 md:w-40 md:h-24 rounded-none object-contain p-3 shadow-sm"
-                width={160}
-                height={96}
+                className="h-28 w-52 max-w-full object-contain rounded-none bg-background p-3 shadow-sm sm:h-32 sm:w-60 md:h-28 md:w-56"
+                width={208}
+                height={112}
                 loading="lazy"
               />
             </div>

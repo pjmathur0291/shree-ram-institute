@@ -2,6 +2,8 @@ import { useState } from "react";
 import { Phone, Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
+const logoSrc = encodeURI("/images/SHRI RAM _LOGO_page-0001 1.webp");
+
 const navLinks = [
   { label: "Home", href: "#hero" },
   { label: "Why Us", href: "#why-us" },
@@ -17,14 +19,14 @@ const Navbar = () => {
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-foreground/95 backdrop-blur-md border-b border-background/10">
-      <div className="container mx-auto flex items-center justify-between h-24 md:h-28 px-4">
+      <div className="container mx-auto flex items-center justify-between h-28 sm:h-32 md:h-32 px-4">
         <a href="#hero" className="flex items-center gap-2">
           <img
-            src={encodeURI("/logo (1).webp")}
+            src={logoSrc}
             alt="Shri Ram Institute logo"
-            className="block shrink-0 w-28 h-16 md:w-36 md:h-20 rounded-none object-contain p-2 shadow-sm max-w-none max-h-none"
-            width={144}
-            height={80}
+            className="block shrink-0 h-24 w-44 max-w-[min(100%,11rem)] object-contain rounded-none bg-background p-2 shadow-sm sm:h-28 sm:w-52 sm:max-w-[13rem] lg:h-24 lg:w-44 lg:max-w-[11rem]"
+            width={176}
+            height={96}
             loading="eager"
           />
         </a>
