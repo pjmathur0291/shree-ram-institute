@@ -10,7 +10,7 @@ const Footer = () => {
               <img
                 src={logoSrc}
                 alt="Shri Ram Institute logo"
-                className="h-28 w-52 max-w-full object-contain rounded-none bg-background p-3 shadow-sm sm:h-32 sm:w-60 md:h-28 md:w-56"
+                className="h-28 w-52 max-w-full object-contain rounded-none p-3 shadow-sm sm:h-32 sm:w-60 md:h-28 md:w-56"
                 width={208}
                 height={112}
                 loading="lazy"

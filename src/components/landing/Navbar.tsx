@@ -24,7 +24,7 @@ const Navbar = () => {
           <img
             src={logoSrc}
             alt="Shri Ram Institute logo"
-            className="block shrink-0 h-24 w-44 max-w-[min(100%,11rem)] object-contain rounded-none bg-background p-2 shadow-sm sm:h-28 sm:w-52 sm:max-w-[13rem] lg:h-24 lg:w-44 lg:max-w-[11rem]"
+            className="block shrink-0 h-24 w-44 max-w-[min(100%,11rem)] object-contain rounded-none p-2 shadow-sm sm:h-28 sm:w-52 sm:max-w-[13rem] lg:h-24 lg:w-44 lg:max-w-[11rem]"
             width={176}
             height={96}
             loading="eager"
