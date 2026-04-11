@@ -56,7 +56,7 @@ const PlacementsSection = () => {
         >
           <span className="text-accent font-semibold text-sm uppercase tracking-wider">Placement Success</span>
           <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold mt-3">
-            From Our Kitchen to the <span className="text-gradient-gold">World's Best Hotels</span>
+          From Shri Ram Institute to <span className="text-gradient-gold">5-Star Hotels</span>
           </h2>
           <p className="text-primary-foreground/70 mt-4 max-w-2xl mx-auto">
             Our culinary graduates are working at the World's No.1 rated hotel — Taj Rambagh Palace and other 5-star chains globally.
