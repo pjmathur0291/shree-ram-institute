@@ -319,7 +319,7 @@ const PlacementsSection = () => {
               {[...recruiterLogos, ...recruiterLogos].map((src, i) => (
                 <div
                   key={`${src}-${i}`}
-                  className="flex h-14 w-[calc((100vw-4rem-5*1rem)/6)] max-w-[200px] shrink-0 items-center justify-center rounded-xl bg-primary-foreground px-3 sm:h-16 lg:h-[4.5rem]"
+                  className="flex h-14 w-[calc((min(100vw,72rem)-4rem-1rem)/2)] shrink-0 items-center justify-center rounded-xl bg-primary-foreground px-3 sm:h-16 lg:h-[4.5rem]"
                   aria-hidden={i >= recruiterLogos.length}
                 >
                   <img
