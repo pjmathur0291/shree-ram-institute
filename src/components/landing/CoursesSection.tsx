@@ -7,8 +7,8 @@ const courses = [
   {
     title: "Diploma in Culinary Arts",
     image: img("IMG_1853 1.webp"),
-    // Subjects sit low in frame; avoid object-top-style crop that shows mostly ceiling
-    imagePosition: "object-[50%_72%]",
+    // object-bottom pinned the photo low and cropped the top of the frame (heads). Center crop instead.
+    imagePosition: "object-center",
     duration: "1 Year",
     eligibility: "10th / 10+2 Pass",
     highlights: [
@@ -22,7 +22,8 @@ const courses = [
   {
     title: "Diploma in Bakery & Confectionery",
     image: img("_Y4A4285 1.webp"),
-    imagePosition: "object-[50%_22%]",
+    // Slight top bias so tall chef hat stays inside the cover crop
+    imagePosition: "object-[50%_18%]",
     duration: "6 Months – 1 Year",
     eligibility: "10th Pass",
     highlights: [
