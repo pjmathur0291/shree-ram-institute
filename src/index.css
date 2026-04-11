@@ -90,8 +90,12 @@
     @apply border-border;
   }
 
+  html {
+    overflow-x: hidden;
+  }
+
   body {
-    @apply bg-background text-foreground font-sans;
+    @apply bg-background text-foreground font-sans overflow-x-hidden;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -123,7 +127,7 @@
 }
 @media (max-width: 749px) {
   .container {
-    padding-left: 0px !important;
-    padding-right: 0px !important;
+    padding-left: 15px !important;
+    padding-right: 15px !important;
   }
 }

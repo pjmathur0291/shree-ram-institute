@@ -6,7 +6,9 @@ const img = (filename: string) => encodeURI(`/images/${filename}`);
 const courses = [
   {
     title: "Diploma in Culinary Arts",
-    image: img("10564131615811079229 1.webp"),
+    image: img("IMG_1853 1.webp"),
+    // Subjects sit low in frame; avoid object-top-style crop that shows mostly ceiling
+    imagePosition: "object-[50%_72%]",
     duration: "1 Year",
     eligibility: "10th / 10+2 Pass",
     highlights: [
@@ -19,7 +21,8 @@ const courses = [
   },
   {
     title: "Diploma in Bakery & Confectionery",
-    image: img("16594930683104909379 1.webp"),
+    image: img("_Y4A4285 1.webp"),
+    imagePosition: "object-[50%_22%]",
     duration: "6 Months – 1 Year",
     eligibility: "10th Pass",
     highlights: [
@@ -91,7 +94,7 @@ const CoursesSection = () => {
                 <img
                   src={course.image}
                   alt={course.title}
-                  className="w-full h-full object-cover object-[50%_20%] group-hover:scale-105 transition-transform duration-500"
+                  className={`w-full h-full object-cover ${course.imagePosition ?? "object-center"} group-hover:scale-105 transition-transform duration-500`}
                   loading="lazy"
                   width={800}
                   height={600}
@@ -102,7 +105,7 @@ const CoursesSection = () => {
                   </span>
                 )}
               </div>
-              <div className="p-6">
+              <div className="p-6 text-left">
                 <h3 className="font-display text-xl font-bold text-foreground mb-3">{course.title}</h3>
                 <div className="flex gap-4 mb-4">
                   <span className="flex items-center gap-1.5 text-sm text-muted-foreground">
