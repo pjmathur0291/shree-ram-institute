@@ -27,11 +27,22 @@ const placementStats = [
   { value: "100+", label: "Students at Hyatt" },
 ];
 
-const recruiters = [
-  "Taj Hotels", "The Oberoi", "ITC Hotels", "The Leela", "Hyatt", 
-  "Marriott", "Carnival Cruises", "MSC Cruises", "Hilton", "Radisson",
-  "JW Marriott", "Accor Hotels"
-];
+const recruiterLogo = (filename: string) => encodeURI(`/images/recruiters/${filename}`);
+
+const recruiterLogos = [
+  "Frame 2147238321.webp",
+  "Frame 2147238322.webp",
+  "Frame 2147238323.webp",
+  "Frame 2147238324.webp",
+  "Frame 2147238325.webp",
+  "Frame 2147238326.webp",
+  "Frame 2147238327.webp",
+  "Frame 2147238328.webp",
+  "Frame 2147238329.webp",
+  "Frame 2147238330.webp",
+  "Frame 2147238331.webp",
+  "Frame 2147238332.webp",
+].map(recruiterLogo);
 
 const PlacementsSection = () => {
   return (
@@ -297,17 +308,32 @@ const PlacementsSection = () => {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
+          aria-label="Our top recruiter partner logos"
         >
           <h3 className="font-display text-xl font-bold text-center mb-6">Our Top Recruiters</h3>
-          <div className="flex flex-wrap justify-center gap-4">
-            {recruiters.map((r, i) => (
-              <span
-                key={i}
-                className="px-5 py-2.5 rounded-full border border-primary-foreground/20 text-sm text-primary-foreground/80 bg-primary-foreground/5"
-              >
-                {r}
-              </span>
-            ))}
+          <div className="relative overflow-hidden rounded-2xl border border-primary-foreground/10 bg-primary-foreground/5 py-6">
+            <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-primary to-transparent" />
+            <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-primary to-transparent" />
+
+            <div className="flex w-max animate-recruiter-marquee motion-reduce:animate-none gap-4">
+              {[...recruiterLogos, ...recruiterLogos].map((src, i) => (
+                <div
+                  key={`${src}-${i}`}
+                  className="flex h-14 w-[calc((100vw-4rem-5*1rem)/6)] max-w-[200px] shrink-0 items-center justify-center rounded-xl bg-primary-foreground px-3 sm:h-16 lg:h-[4.5rem]"
+                  aria-hidden={i >= recruiterLogos.length}
+                >
+                  <img
+                    src={src}
+                    alt="Recruiter partner logo"
+                    className="max-h-full w-auto max-w-full object-contain"
+                    loading="lazy"
+                    draggable={false}
+                    width={200}
+                    height={80}
+                  />
+                </div>
+              ))}
+            </div>
           </div>
         </motion.div>
       </div>
