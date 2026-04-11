@@ -146,8 +146,8 @@ const ContactSection = () => {
                   <option value="">Select Course *</option>
                   <option value="Diploma in Culinary Arts">Diploma in Culinary Arts</option>
                   <option value="Diploma in Bakery & Confectionery">Diploma in Bakery & Confectionery</option>
-                  <option value="Certificate in Chocolate & Confections">Certificate in Chocolate & Confections</option>
-                  <option value="Advanced Pastry Arts">Advanced Pastry Arts</option>
+                  {/* <option value="Certificate in Chocolate & Confections">Certificate in Chocolate & Confections</option>
+                  <option value="Advanced Pastry Arts">Advanced Pastry Arts</option> */}
                 </select>
                 <textarea
                   placeholder="Message (Optional)"
