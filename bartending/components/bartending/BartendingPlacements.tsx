@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Star, MapPin, Building2 } from "lucide-react";
-import placementSuccess from "../../assets/bartending/placement-success.jpg";
+import placementSuccess from "../../assets/bartending/IMG-20260411-WA0017.jpg 1.webp";
 
 const recruiters = [
   "Taj Hotels", "Oberoi Group", "Marriott International", "Ritz Carlton",

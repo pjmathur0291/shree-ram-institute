@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Wine, Award, Globe } from "lucide-react";
-import heroBartender from "../../assets/bartending/hero-bartender.jpg";
+import heroBartender from "../../assets/bartending/IMG-20260411-WA0001.jpg 1.webp";
 
 const BartendingHero = () => {
   return (

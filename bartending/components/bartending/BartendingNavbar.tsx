@@ -3,6 +3,8 @@ import { Phone, Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 
+const logoSrc = encodeURI("/images/SHRI RAM _LOGO_page-0001 1.webp");
+
 const navLinks = [
   { label: "Home", href: "#hero" },
   { label: "Why Us", href: "#why-us" },
@@ -18,15 +20,16 @@ const BartendingNavbar = () => {
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-md border-b border-border">
-      <div className="container mx-auto flex items-center justify-between h-16 md:h-20 px-4">
+      <div className="container mx-auto flex items-center justify-between h-28 sm:h-32 md:h-32 px-4">
         <a href="#hero" className="flex items-center gap-2">
-          <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center">
-            <span className="font-display text-primary-foreground text-sm font-bold">श्री</span>
-          </div>
-          <div className="leading-tight">
-            <span className="font-display text-lg font-bold text-foreground">Ram Institute</span>
-            <span className="block text-xs text-muted-foreground">Bartending & Mixology</span>
-          </div>
+          <img
+            src={logoSrc}
+            alt="Shri Ram Institute logo"
+            className="block shrink-0 h-24 w-44 max-w-[min(100%,11rem)] object-contain rounded-none p-2 shadow-sm sm:h-28 sm:w-52 sm:max-w-[13rem] lg:h-24 lg:w-44 lg:max-w-[11rem]"
+            width={176}
+            height={96}
+            loading="eager"
+          />
         </a>
 
         <div className="hidden lg:flex items-center gap-6">

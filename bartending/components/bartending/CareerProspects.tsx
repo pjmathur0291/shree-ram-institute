@@ -1,9 +1,9 @@
 import { motion } from "framer-motion";
 import { Briefcase, ArrowRight } from "lucide-react";
-import hotelBartender from "../../assets/bartending/hotel-bartender.jpg";
-import cruiseBar from "../../assets/bartending/cruise-bar.jpg";
-import nightclubBar from "../../assets/bartending/nightclub-bar.jpg";
-import premiumBar from "../../assets/bartending/premium-bar.jpg";
+import hotelBartender from "../../assets/bartending/IMG_4938 (1) 1.webp";
+import cruiseBar from "../../assets/bartending/IMG-20260410-WA0015.jpg 1.webp";
+import nightclubBar from "../../assets/bartending/IMG-20260411-WA0005.jpg 1.webp";
+import premiumBar from "../../assets/bartending/IMG-20260412-WA0003.jpg 1.webp";
 
 const careers = [
   {

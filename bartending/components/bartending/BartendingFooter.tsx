@@ -1,19 +1,22 @@
 import { Link } from "react-router-dom";
 
+const logoSrc = encodeURI("/images/SHRI RAM _LOGO_page-0001 1.webp");
+
 const BartendingFooter = () => {
   return (
     <footer className="bg-foreground text-cream py-12">
       <div className="container mx-auto px-4">
         <div className="grid md:grid-cols-3 gap-8 mb-8">
           <div>
-            <div className="flex items-center gap-2 mb-4">
-              <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center">
-                <span className="font-display text-primary-foreground text-sm font-bold">श्री</span>
-              </div>
-              <div className="leading-tight">
-                <span className="font-display text-lg font-bold">Ram Institute</span>
-                <span className="block text-xs text-cream/60">Bartending & Mixology</span>
-              </div>
+            <div className="flex items-center gap-2 mb-3">
+              <img
+                src={logoSrc}
+                alt="Shri Ram Institute logo"
+                className="h-28 w-52 max-w-full object-contain rounded-none p-3 shadow-sm sm:h-32 sm:w-60 md:h-28 md:w-56"
+                width={208}
+                height={112}
+                loading="lazy"
+              />
             </div>
             <p className="text-cream/60 text-sm leading-relaxed">
               Uttarakhand's oldest & most trusted institute for professional bartending training. Est. 1999.
@@ -32,9 +35,9 @@ const BartendingFooter = () => {
                   {link}
                 </a>
               ))}
-              <Link to="/" className="block text-accent text-sm hover:text-accent/80 transition-colors">
+              {/* <Link to="/" className="block text-accent text-sm hover:text-accent/80 transition-colors">
                 Culinary Arts & Bakery →
-              </Link>
+              </Link> */}
             </div>
           </div>
 
@@ -51,7 +54,7 @@ const BartendingFooter = () => {
 
         <div className="border-t border-cream/10 pt-6 text-center">
           <p className="text-cream/40 text-sm">
-            © {new Date().getFullYear()} Shri Ram Institute of Hotel Management, Dehradun. All rights reserved.
+            © {new Date().getFullYear()} Shri Ram Institute of Hotel Management, Dehradun. All rights reserved. Design and Developed by Mediagarh
           </p>
         </div>
       </div>

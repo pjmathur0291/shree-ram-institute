@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { GraduationCap, Globe, Wine, Users, Award, ShieldCheck, Coffee, MapPin } from "lucide-react";
-import trainingBar from "../../assets/bartending/training-bar.jpg";
+import trainingBar from "../../assets/bartending/IMG-20260411-WA0025.jpg 1.webp";
 
 const usps = [
   { icon: GraduationCap, title: "25+ Years of Excellence", desc: "Uttarakhand's oldest & most trusted hospitality institute, est. 1999" },
