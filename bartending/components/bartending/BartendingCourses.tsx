@@ -32,19 +32,19 @@ const courses = [
     ],
     badge: "Quick Start",
   },
-  {
-    title: "Mocktail & Non-Alcoholic Beverage Specialist",
-    image: mocktailPrep,
-    duration: "3 Months",
-    eligibility: "10th Pass",
-    highlights: [
-      "Creative Non-Alcoholic Mixology",
-      "Molecular Beverage Techniques",
-      "Fruit Carving & Garnishing Art",
-      "Café & Lounge Bar Setup",
-    ],
-    badge: null,
-  },
+  // {
+  //   title: "Mocktail & Non-Alcoholic Beverage Specialist",
+  //   image: mocktailPrep,
+  //   duration: "3 Months",
+  //   eligibility: "10th Pass",
+  //   highlights: [
+  //     "Creative Non-Alcoholic Mixology",
+  //     "Molecular Beverage Techniques",
+  //     "Fruit Carving & Garnishing Art",
+  //     "Café & Lounge Bar Setup",
+  //   ],
+  //   badge: null,
+  // },
   {
     title: "Complimentary Barista Certification",
     image: baristaCoffee,
