@@ -1,49 +1,8 @@
 import { motion } from "framer-motion";
 import { Phone, Mail, MapPin, MessageCircle } from "lucide-react";
-import { useMemo, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import BHMLeadForm from "./BHMLeadForm";
 
 const BHMContact = () => {
-  const navigate = useNavigate();
-  const leadsheetWebhookUrl = useMemo(() => import.meta.env.VITE_LEADSHEET_WEBHOOK_URL as string | undefined, []);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [formData, setFormData] = useState({
-    name: "",
-    phone: "",
-    email: "",
-    program: "",
-    message: "",
-  });
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (isSubmitting) return;
-
-    setIsSubmitting(true);
-    try {
-      if (leadsheetWebhookUrl) {
-        const payload = new URLSearchParams({
-          name: formData.name.trim(),
-          phone: formData.phone.trim(),
-          email: formData.email.trim(),
-          course: formData.program || "Bachelor of Hotel Management (BHM)",
-          message: formData.message.trim(),
-          pageUrl: window.location.href,
-          submittedAt: new Date().toISOString().slice(0, 10),
-        });
-
-        const url = leadsheetWebhookUrl.includes("?")
-          ? `${leadsheetWebhookUrl}&${payload.toString()}`
-          : `${leadsheetWebhookUrl}?${payload.toString()}`;
-
-        await fetch(url, { method: "GET" });
-      }
-      navigate("/thank-you");
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
   return (
     <section id="contact" className="section-padding bg-gradient-hero text-cream">
       <div className="container mx-auto">
@@ -63,65 +22,13 @@ const BHMContact = () => {
         </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-10">
-          <motion.form
+          <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="space-y-5"
-            onSubmit={handleSubmit}
           >
-            <div className="grid md:grid-cols-2 gap-4">
-              <input
-                type="text"
-                placeholder="Full Name *"
-                className="w-full px-4 py-3 rounded-xl bg-cream/10 border border-cream/20 text-cream placeholder:text-cream/40 focus:outline-none focus:border-accent"
-                required
-                value={formData.name}
-                onChange={(e) => setFormData((prev) => ({ ...prev, name: e.target.value }))}
-              />
-              <input
-                type="tel"
-                placeholder="Phone Number *"
-                className="w-full px-4 py-3 rounded-xl bg-cream/10 border border-cream/20 text-cream placeholder:text-cream/40 focus:outline-none focus:border-accent"
-                required
-                value={formData.phone}
-                onChange={(e) => setFormData((prev) => ({ ...prev, phone: e.target.value }))}
-              />
-            </div>
-            <input
-              type="email"
-              placeholder="Email Address"
-              className="w-full px-4 py-3 rounded-xl bg-cream/10 border border-cream/20 text-cream placeholder:text-cream/40 focus:outline-none focus:border-accent"
-              value={formData.email}
-              onChange={(e) => setFormData((prev) => ({ ...prev, email: e.target.value }))}
-            />
-            <select
-              className="w-full px-4 py-3 rounded-xl bg-cream/10 border border-cream/20 text-cream/70 focus:outline-none focus:border-accent"
-              value={formData.program}
-              onChange={(e) => setFormData((prev) => ({ ...prev, program: e.target.value }))}
-            >
-              <option value="">Select Programme</option>
-              <option value="Bachelor of Hotel Management (BHM)">Bachelor of Hotel Management (BHM)</option>
-              <option value="Diploma in Hotel Management">Diploma in Hotel Management</option>
-              <option value="Culinary Arts">Culinary Arts</option>
-              <option value="Bartending">Bartending</option>
-              <option value="Bakery">Bakery</option>
-            </select>
-            <textarea
-              rows={3}
-              placeholder="Your Message (Optional)"
-              className="w-full px-4 py-3 rounded-xl bg-cream/10 border border-cream/20 text-cream placeholder:text-cream/40 focus:outline-none focus:border-accent resize-none"
-              value={formData.message}
-              onChange={(e) => setFormData((prev) => ({ ...prev, message: e.target.value }))}
-            />
-            <button
-              type="submit"
-              disabled={isSubmitting}
-              className="w-full bg-gradient-gold text-charcoal py-4 rounded-xl font-bold text-base hover:shadow-lg hover:shadow-gold/30 transition-all disabled:opacity-60 disabled:cursor-not-allowed"
-            >
-              {isSubmitting ? "Submitting..." : "Get FREE Callback Now"}
-            </button>
-          </motion.form>
+            <BHMLeadForm formLocation="contact" />
+          </motion.div>
 
           <motion.div
             initial={{ opacity: 0, x: 20 }}
