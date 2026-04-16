@@ -42,12 +42,7 @@ const BartendingNavbar = () => {
               {link.label}
             </a>
           ))}
-          <Link
-            to="/"
-            className="text-sm font-medium text-accent hover:text-accent/80 transition-colors"
-          >
-            Culinary Arts
-          </Link>
+
         </div>
 
         <div className="hidden md:flex items-center gap-3">
