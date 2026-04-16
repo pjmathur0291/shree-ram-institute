@@ -31,6 +31,7 @@
   },
   "include": [
     "src",
-    "bartending"
+    "bartending",
+    "bachelors-in-hotel-management"
   ]
 }

@@ -8,6 +8,7 @@ export default {
     "./app/**/*.{ts,tsx}",
     "./src/**/*.{ts,tsx}",
     "./bartending/**/*.{ts,tsx}",
+    "./bachelors-in-hotel-management/**/*.{ts,tsx}",
   ],
   prefix: "",
   theme: {
