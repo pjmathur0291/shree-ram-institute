@@ -1,43 +1,8 @@
 import { motion } from "framer-motion";
 import { Phone, Mail, MapPin, Clock, MessageCircle } from "lucide-react";
-import { useMemo, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import BartendingLeadForm from "./BartendingLeadForm";
 
 const BartendingContact = () => {
-  const navigate = useNavigate();
-  const leadsheetWebhookUrl = useMemo(() => import.meta.env.VITE_LEADSHEET_WEBHOOK_URL as string | undefined, []);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [formData, setFormData] = useState({ name: "", phone: "", email: "", program: "" });
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (isSubmitting) return;
-
-    setIsSubmitting(true);
-    try {
-      if (leadsheetWebhookUrl) {
-        const payload = new URLSearchParams({
-          name: formData.name.trim(),
-          phone: formData.phone.trim(),
-          email: formData.email.trim(),
-          course: formData.program || "Bartending Program",
-          message: "",
-          pageUrl: window.location.href,
-          submittedAt: new Date().toISOString().slice(0, 10),
-        });
-
-        const url = leadsheetWebhookUrl.includes("?")
-          ? `${leadsheetWebhookUrl}&${payload.toString()}`
-          : `${leadsheetWebhookUrl}?${payload.toString()}`;
-
-        await fetch(url, { method: "GET" });
-      }
-      navigate("/thank-you");
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
   return (
     <section id="contact" className="section-padding bg-background">
       <div className="container mx-auto">
@@ -64,50 +29,7 @@ const BartendingContact = () => {
             className="glass-card p-8"
           >
             <h3 className="font-display text-2xl font-bold text-foreground mb-6">Request a FREE Callback</h3>
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <input
-                type="text"
-                placeholder="Your Full Name"
-                required
-                value={formData.name}
-                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50"
-              />
-              <input
-                type="tel"
-                placeholder="Phone Number"
-                required
-                value={formData.phone}
-                onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50"
-              />
-              <input
-                type="email"
-                placeholder="Email Address"
-                value={formData.email}
-                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50"
-              />
-              <select
-                value={formData.program}
-                onChange={(e) => setFormData({ ...formData, program: e.target.value })}
-                className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50"
-              >
-                <option value="">Select Programme</option>
-                <option value="Advanced Diploma in Bartending (6 Months)">Advanced Diploma in Bartending (6 Months)</option>
-                <option value="Professional Diploma in Bartending (3 Months)">Professional Diploma in Bartending (3 Months)</option>
-                <option value="Mocktail Specialist (3 Months)">Mocktail Specialist (3 Months)</option>
-              </select>
-              <button
-                type="submit"
-                className="w-full bg-gradient-gold text-charcoal py-4 rounded-lg font-bold text-base hover:shadow-lg hover:shadow-gold/30 transition-all"
-              >
-                Get FREE Callback Now
-              </button>
-              <p className="text-xs text-muted-foreground text-center">
-                🔒 Your information is secure and will not be shared
-              </p>
-            </form>
+            <BartendingLeadForm formLocation="contact" />
           </motion.div>
 
           <motion.div
