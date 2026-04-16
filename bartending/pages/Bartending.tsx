@@ -20,6 +20,15 @@ const Bartending = () => {
       <BartendingStats />
       <WhyBartending />
       <BartendingCourses />
+      <section aria-label="Bartending enquiry form" className="section-padding bg-background">
+        <div className="container mx-auto">
+          <div className="mx-auto max-w-2xl glass-card p-8">
+            <h3 className="font-display text-2xl font-bold text-foreground mb-2 text-center">Request a FREE Callback</h3>
+            <p className="text-muted-foreground text-sm mb-6 text-center">Our counselor will contact you within 30 minutes</p>
+            <BartendingLeadForm formLocation="after-courses" />
+          </div>
+        </div>
+      </section>
       <CareerProspects />
       <BartendingPlacements />
       <section aria-label="Bartending enquiry form" className="section-padding bg-background">
