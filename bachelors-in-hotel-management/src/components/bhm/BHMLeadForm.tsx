@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 type BHMLeadFormProps = {
@@ -9,6 +9,38 @@ type BHMLeadFormProps = {
   textareaClassName?: string;
 };
 
+type UtmFields = {
+  utmSource: string;
+  utmMedium: string;
+  utmCampaign: string;
+  utmTerm: string;
+  utmKeyword: string;
+};
+
+const UTM_STORAGE_KEY = "sri:utm";
+
+function getUtmFromLocation(): UtmFields {
+  const params = new URLSearchParams(window.location.search);
+  return {
+    utmSource: params.get("utm_source") ?? "",
+    utmMedium: params.get("utm_medium") ?? "",
+    utmCampaign: params.get("utm_campaign") ?? "",
+    utmTerm: params.get("utm_term") ?? "",
+    utmKeyword: params.get("utm_keyword") ?? "",
+  };
+}
+
+function safeReadStoredUtm(): Partial<UtmFields> {
+  try {
+    const raw = window.localStorage.getItem(UTM_STORAGE_KEY);
+    if (!raw) return {};
+    const parsed = JSON.parse(raw) as Partial<UtmFields> | null;
+    return parsed && typeof parsed === "object" ? parsed : {};
+  } catch {
+    return {};
+  }
+}
+
 const BHMLeadForm = ({
   formLocation,
   className,
@@ -18,6 +50,7 @@ const BHMLeadForm = ({
 }: BHMLeadFormProps) => {
   const navigate = useNavigate();
   const leadsheetWebhookUrl = useMemo(() => import.meta.env.VITE_LEADSHEET_WEBHOOK_URL as string | undefined, []);
+  const crmApiUrl = useMemo(() => import.meta.env.VITE_CRM_API_URL as string | undefined, []);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
@@ -26,6 +59,29 @@ const BHMLeadForm = ({
     program: "",
     message: "",
   });
+  const [utm, setUtm] = useState<UtmFields>(() => {
+    const fromUrl = getUtmFromLocation();
+    const stored = safeReadStoredUtm();
+    return {
+      utmSource: fromUrl.utmSource || stored.utmSource || "",
+      utmMedium: fromUrl.utmMedium || stored.utmMedium || "",
+      utmCampaign: fromUrl.utmCampaign || stored.utmCampaign || "",
+      utmTerm: fromUrl.utmTerm || stored.utmTerm || "",
+      utmKeyword: fromUrl.utmKeyword || stored.utmKeyword || "",
+    };
+  });
+
+  useEffect(() => {
+    const fromUrl = getUtmFromLocation();
+    if (fromUrl.utmSource || fromUrl.utmMedium || fromUrl.utmCampaign || fromUrl.utmTerm || fromUrl.utmKeyword) {
+      setUtm(fromUrl);
+      try {
+        window.localStorage.setItem(UTM_STORAGE_KEY, JSON.stringify(fromUrl));
+      } catch {
+        // ignore
+      }
+    }
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -33,6 +89,26 @@ const BHMLeadForm = ({
 
     setIsSubmitting(true);
     try {
+      const payload = new URLSearchParams({
+        name: formData.name.trim(),
+        phone: formData.phone.trim(),
+        email: formData.email.trim(),
+        course: formData.program || "Bachelor of Hotel Management (BHM)",
+        message: formLocation ? `formLocation=${formLocation} | ${formData.message.trim()}` : formData.message.trim(),
+        pageUrl: window.location.href,
+        submittedAt: new Date().toISOString().slice(0, 10),
+        utm_source: utm.utmSource,
+        utm_medium: utm.utmMedium,
+        utm_campaign: utm.utmCampaign,
+        utm_term: utm.utmTerm,
+        utm_keyword: utm.utmKeyword,
+      });
+
+      if (crmApiUrl) {
+        const url = crmApiUrl.includes("?") ? `${crmApiUrl}&${payload.toString()}` : `${crmApiUrl}?${payload.toString()}`;
+        await fetch(url, { method: "GET" });
+      }
+
       if (leadsheetWebhookUrl) {
         const payload = new URLSearchParams({
           name: formData.name.trim(),
@@ -42,6 +118,11 @@ const BHMLeadForm = ({
           message: formLocation ? `formLocation=${formLocation} | ${formData.message.trim()}` : formData.message.trim(),
           pageUrl: window.location.href,
           submittedAt: new Date().toISOString().slice(0, 10),
+          utm_source: utm.utmSource,
+          utm_medium: utm.utmMedium,
+          utm_campaign: utm.utmCampaign,
+          utm_term: utm.utmTerm,
+          utm_keyword: utm.utmKeyword,
         });
 
         const url = leadsheetWebhookUrl.includes("?")
@@ -68,6 +149,11 @@ const BHMLeadForm = ({
 
   return (
     <form onSubmit={handleSubmit} className={className ?? "space-y-5"}>
+      <input type="hidden" name="utm_source" value={utm.utmSource} />
+      <input type="hidden" name="utm_medium" value={utm.utmMedium} />
+      <input type="hidden" name="utm_campaign" value={utm.utmCampaign} />
+      <input type="hidden" name="utm_term" value={utm.utmTerm} />
+      <input type="hidden" name="utm_keyword" value={utm.utmKeyword} />
       <div className="grid md:grid-cols-2 gap-4">
         <input
           type="text"
