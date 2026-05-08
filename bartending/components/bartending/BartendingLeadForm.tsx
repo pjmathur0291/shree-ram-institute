@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 type BartendingLeadFormProps = {
@@ -6,11 +6,65 @@ type BartendingLeadFormProps = {
   className?: string;
 };
 
+type UtmFields = {
+  utmSource: string;
+  utmCampaign: string;
+  utmTerm: string;
+  utmKeyword: string;
+};
+
+const UTM_STORAGE_KEY = "sri:utm";
+
+function getUtmFromLocation(): UtmFields {
+  const params = new URLSearchParams(window.location.search);
+  return {
+    utmSource: params.get("utm_source") ?? "",
+    utmCampaign: params.get("utm_campaign") ?? "",
+    utmTerm: params.get("utm_term") ?? "",
+    utmKeyword: params.get("utm_keyword") ?? "",
+  };
+}
+
+function safeReadStoredUtm(): Partial<UtmFields> {
+  try {
+    const raw = window.localStorage.getItem(UTM_STORAGE_KEY);
+    if (!raw) return {};
+    const parsed = JSON.parse(raw) as Partial<UtmFields> | null;
+    return parsed && typeof parsed === "object" ? parsed : {};
+  } catch {
+    return {};
+  }
+}
+
 const BartendingLeadForm = ({ formLocation, className }: BartendingLeadFormProps) => {
   const navigate = useNavigate();
   const leadsheetWebhookUrl = useMemo(() => import.meta.env.VITE_LEADSHEET_WEBHOOK_URL as string | undefined, []);
+  const crmApiUrl = useMemo(() => import.meta.env.VITE_CRM_API_URL as string | undefined, []);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({ name: "", phone: "", email: "", program: "" });
+  const [utm, setUtm] = useState<UtmFields>(() => {
+    const fromUrl = getUtmFromLocation();
+    const stored = safeReadStoredUtm();
+    return {
+      utmSource: fromUrl.utmSource || stored.utmSource || "",
+      utmCampaign: fromUrl.utmCampaign || stored.utmCampaign || "",
+      utmTerm: fromUrl.utmTerm || stored.utmTerm || "",
+      utmKeyword: fromUrl.utmKeyword || stored.utmKeyword || "",
+    };
+  });
+
+  useEffect(() => {
+    // Keep in sync if URL changes (and persist for later navigations).
+    const fromUrl = getUtmFromLocation();
+    if (fromUrl.utmSource || fromUrl.utmCampaign || fromUrl.utmTerm || fromUrl.utmKeyword) {
+      setUtm(fromUrl);
+      try {
+        window.localStorage.setItem(UTM_STORAGE_KEY, JSON.stringify(fromUrl));
+      } catch {
+        // ignore
+      }
+    }
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -18,6 +72,25 @@ const BartendingLeadForm = ({ formLocation, className }: BartendingLeadFormProps
 
     setIsSubmitting(true);
     try {
+      const payload = new URLSearchParams({
+        name: formData.name.trim(),
+        phone: formData.phone.trim(),
+        email: formData.email.trim(),
+        course: formData.program || "Bartending Program",
+        message: formLocation ? `formLocation=${formLocation}` : "",
+        pageUrl: window.location.href,
+        submittedAt: new Date().toISOString().slice(0, 10),
+        utm_source: utm.utmSource,
+        utm_campaign: utm.utmCampaign,
+        utm_term: utm.utmTerm,
+        utm_keyword: utm.utmKeyword,
+      });
+
+      if (crmApiUrl) {
+        const url = crmApiUrl.includes("?") ? `${crmApiUrl}&${payload.toString()}` : `${crmApiUrl}?${payload.toString()}`;
+        await fetch(url, { method: "GET" });
+      }
+
       if (leadsheetWebhookUrl) {
         const payload = new URLSearchParams({
           name: formData.name.trim(),
@@ -27,6 +100,10 @@ const BartendingLeadForm = ({ formLocation, className }: BartendingLeadFormProps
           message: formLocation ? `formLocation=${formLocation}` : "",
           pageUrl: window.location.href,
           submittedAt: new Date().toISOString().slice(0, 10),
+          utm_source: utm.utmSource,
+          utm_campaign: utm.utmCampaign,
+          utm_term: utm.utmTerm,
+          utm_keyword: utm.utmKeyword,
         });
 
         const url = leadsheetWebhookUrl.includes("?")
@@ -43,6 +120,10 @@ const BartendingLeadForm = ({ formLocation, className }: BartendingLeadFormProps
 
   return (
     <form onSubmit={handleSubmit} className={className ?? "space-y-4"}>
+      <input type="hidden" name="utm_source" value={utm.utmSource} />
+      <input type="hidden" name="utm_campaign" value={utm.utmCampaign} />
+      <input type="hidden" name="utm_term" value={utm.utmTerm} />
+      <input type="hidden" name="utm_keyword" value={utm.utmKeyword} />
       <input
         type="text"
         placeholder="Your Full Name"
