@@ -8,6 +8,7 @@ type BartendingLeadFormProps = {
 
 type UtmFields = {
   utmSource: string;
+  utmMedium: string;
   utmCampaign: string;
   utmTerm: string;
   utmKeyword: string;
@@ -19,6 +20,7 @@ function getUtmFromLocation(): UtmFields {
   const params = new URLSearchParams(window.location.search);
   return {
     utmSource: params.get("utm_source") ?? "",
+    utmMedium: params.get("utm_medium") ?? "",
     utmCampaign: params.get("utm_campaign") ?? "",
     utmTerm: params.get("utm_term") ?? "",
     utmKeyword: params.get("utm_keyword") ?? "",
@@ -47,6 +49,7 @@ const BartendingLeadForm = ({ formLocation, className }: BartendingLeadFormProps
     const stored = safeReadStoredUtm();
     return {
       utmSource: fromUrl.utmSource || stored.utmSource || "",
+      utmMedium: fromUrl.utmMedium || stored.utmMedium || "",
       utmCampaign: fromUrl.utmCampaign || stored.utmCampaign || "",
       utmTerm: fromUrl.utmTerm || stored.utmTerm || "",
       utmKeyword: fromUrl.utmKeyword || stored.utmKeyword || "",
@@ -56,7 +59,7 @@ const BartendingLeadForm = ({ formLocation, className }: BartendingLeadFormProps
   useEffect(() => {
     // Keep in sync if URL changes (and persist for later navigations).
     const fromUrl = getUtmFromLocation();
-    if (fromUrl.utmSource || fromUrl.utmCampaign || fromUrl.utmTerm || fromUrl.utmKeyword) {
+    if (fromUrl.utmSource || fromUrl.utmMedium || fromUrl.utmCampaign || fromUrl.utmTerm || fromUrl.utmKeyword) {
       setUtm(fromUrl);
       try {
         window.localStorage.setItem(UTM_STORAGE_KEY, JSON.stringify(fromUrl));
@@ -81,6 +84,7 @@ const BartendingLeadForm = ({ formLocation, className }: BartendingLeadFormProps
         pageUrl: window.location.href,
         submittedAt: new Date().toISOString().slice(0, 10),
         utm_source: utm.utmSource,
+        utm_medium: utm.utmMedium,
         utm_campaign: utm.utmCampaign,
         utm_term: utm.utmTerm,
         utm_keyword: utm.utmKeyword,
@@ -101,6 +105,7 @@ const BartendingLeadForm = ({ formLocation, className }: BartendingLeadFormProps
           pageUrl: window.location.href,
           submittedAt: new Date().toISOString().slice(0, 10),
           utm_source: utm.utmSource,
+          utm_medium: utm.utmMedium,
           utm_campaign: utm.utmCampaign,
           utm_term: utm.utmTerm,
           utm_keyword: utm.utmKeyword,
@@ -121,6 +126,7 @@ const BartendingLeadForm = ({ formLocation, className }: BartendingLeadFormProps
   return (
     <form onSubmit={handleSubmit} className={className ?? "space-y-4"}>
       <input type="hidden" name="utm_source" value={utm.utmSource} />
+      <input type="hidden" name="utm_medium" value={utm.utmMedium} />
       <input type="hidden" name="utm_campaign" value={utm.utmCampaign} />
       <input type="hidden" name="utm_term" value={utm.utmTerm} />
       <input type="hidden" name="utm_keyword" value={utm.utmKeyword} />
