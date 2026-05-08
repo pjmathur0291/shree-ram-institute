@@ -8,7 +8,7 @@ import ThankYou from "./pages/ThankYou.tsx";
 import NotFound from "./pages/NotFound.tsx";
 import Bartending from "../bartending/pages/Bartending.tsx";
 import HotelManagement from "../bachelors-in-hotel-management/src/pages/HotelManagement.tsx";
-
+import DHM from "../diploma-in-hotel-management/src/pages/DHM.tsx";
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -20,7 +20,11 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/bartending" element={<Bartending />} />
-          <Route path="/bachelors-in-hotel-management" element={<HotelManagement />} />
+          <Route
+            path="/bachelors-in-hotel-management"
+            element={<HotelManagement />}
+          />
+          <Route path="/diploma-in-hotel-management" element={<DHM />} />
           <Route path="/thank-you" element={<ThankYou />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />

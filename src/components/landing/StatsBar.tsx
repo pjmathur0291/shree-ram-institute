@@ -19,15 +19,15 @@ const StatsBar = () => {
             viewport={{ once: true }}
             className="mx-auto max-w-3xl text-center"
           >
-            <span className="text-accent font-semibold text-sm uppercase tracking-wider">Earn While You Learn</span>
+            <span className="text-accent font-semibold text-sm uppercase tracking-wider">
+              Earn While You Learn
+            </span>
             <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mt-3 leading-tight">
               6 Months Learning.{" "}
               <span className="text-primary">6 Months Earning.</span>
             </h2>
             <p className="text-muted-foreground mt-4 text-base md:text-lg leading-relaxed">
-              Get Back Up to 80% of Your Fees
-              <br />
-              with a 5-Star Hotel Internship
+              Get Back Up to 80% of Your Fees with a 5-Star Hotel Internship
             </p>
           </motion.div>
         </div>
@@ -47,9 +47,13 @@ const StatsBar = () => {
               >
                 <p className="font-display text-2xl md:text-3xl font-bold text-accent">
                   {stat.value}
-                  {stat.suffix && <span className="text-lg ml-1">{stat.suffix}</span>}
+                  {stat.suffix && (
+                    <span className="text-lg ml-1">{stat.suffix}</span>
+                  )}
                 </p>
-                <p className="text-primary-foreground/70 text-xs md:text-sm mt-1">{stat.label}</p>
+                <p className="text-primary-foreground/70 text-xs md:text-sm mt-1">
+                  {stat.label}
+                </p>
               </motion.div>
             ))}
           </div>

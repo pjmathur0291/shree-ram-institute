@@ -85,6 +85,14 @@
   }
 }
 
+.outfit-font {
+  font-family: "Outfit", sans-serif;
+}
+
+.cormorant-garamond-font {
+  font-family: "Cormorant Garamond", serif;
+}
+
 @layer base {
   * {
     @apply border-border;
@@ -98,7 +106,12 @@
     @apply bg-background text-foreground font-sans overflow-x-hidden;
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     font-family: 'Playfair Display', serif;
   }
 }
@@ -125,9 +138,129 @@
     @apply bg-card/80 backdrop-blur-md border border-border/50 rounded-xl shadow-lg;
   }
 }
+
 @media (max-width: 749px) {
   .container {
     padding-left: 15px !important;
     padding-right: 15px !important;
+  }
+}
+
+.custom-bullet {
+  width: 6px !important;
+  height: 6px !important;
+  background: #444 !important;
+  opacity: 1 !important;
+  border-radius: 50% !important;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.swiper-pagination-bullet-active {
+  background: #fbbf24 !important;
+  width: 20px !important;
+  border-radius: 4px !important;
+}
+
+/* Main Slider */
+.student-slider-container {
+  width: 100%;
+  overflow: hidden;
+}
+
+/* Slide */
+.swiper-slide {
+  transition: all 0.5s ease;
+  transform: scale(0.82);
+  opacity: 0.5;
+  display: flex;
+  justify-content: center;
+}
+
+/* Active Slide */
+.swiper-slide-active {
+  transform: scale(1);
+  opacity: 1;
+  z-index: 10;
+}
+
+/* Side Slides */
+.swiper-slide-prev,
+.swiper-slide-next {
+  transform: scale(0.88);
+  opacity: 0.7;
+}
+
+/* Card */
+.student-card {
+  width: 100%;
+  max-width: 520px;
+  aspect-ratio: 16/10;
+  border-radius: 24px;
+  overflow: hidden;
+}
+
+/* Image */
+.student-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Wrapper */
+.swiper-wrapper {
+  align-items: center;
+}
+
+/* Pagination */
+.custom-bullet {
+  width: 6px !important;
+  height: 6px !important;
+  background: #555 !important;
+  border-radius: 999px;
+  transition: all 0.3s ease;
+}
+
+.swiper-pagination-bullet-active {
+  width: 22px !important;
+  background: #facc15 !important;
+}
+
+/* Desktop */
+@media (min-width: 1064px) {
+  .swiper-slide-active .student-card {
+    max-width: 520px;
+  }
+
+  .swiper-slide-prev .student-card,
+  .swiper-slide-next .student-card {
+    max-width: 320px;
+  }
+}
+
+@media (min-width: 764px) {
+  .swiper-slide-active .student-card {
+    max-width: 620px;
+  }
+
+  .swiper-slide-prev .student-card,
+  .swiper-slide-next .student-card {
+    max-width: 620px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+
+  .swiper-slide,
+  .swiper-slide-active,
+  .swiper-slide-prev,
+  .swiper-slide-next {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  .student-card {
+    max-width: 100%;
   }
 }
