@@ -89,6 +89,7 @@ const RequestForm = () => {
                 type="email"
                 placeholder="Email Address"
                 value={formData.email}
+                required
                 onChange={(e) =>
                   setFormData({ ...formData, email: e.target.value })
                 }
@@ -96,6 +97,7 @@ const RequestForm = () => {
               />
               <select
                 value={formData.program}
+                required
                 onChange={(e) =>
                   setFormData({ ...formData, program: e.target.value })
                 }

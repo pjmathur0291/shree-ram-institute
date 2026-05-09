@@ -191,6 +191,7 @@ const HeroBanner = () => {
                 <input
                   type="email"
                   value={formData.email}
+                  required
                   onChange={(e) =>
                     setFormData({ ...formData, email: e.target.value })
                   }
@@ -204,6 +205,7 @@ const HeroBanner = () => {
                   </select> */}
                   <select
                     value={formData.program}
+                    required
                     onChange={(e) =>
                       setFormData({ ...formData, program: e.target.value })
                     }
