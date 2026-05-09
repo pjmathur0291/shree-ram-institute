@@ -3,8 +3,36 @@ import Hero from "../assets/hero.webp";
 import { AnimatePresence, motion } from "framer-motion";
 import Logo from "../assets/SHRI_RAM _LOGO.webp";
 import { ArrowRight, Menu, X } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 const HeroBanner = () => {
+  const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [formData, setFormData] = useState({
+    name: "",
+    phone: "",
+    email: "",
+    program: "",
+  });
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (isSubmitting) return;
+
+    setIsSubmitting(true);
+    try {
+      const payload = new URLSearchParams({
+        name: formData.name.trim(),
+        phone: formData.phone.trim(),
+        email: formData.email.trim(),
+        course: formData.program || "Bartending Program",
+        pageUrl: window.location.href,
+        submittedAt: new Date().toISOString().slice(0, 10),
+      });
+      navigate("/thank-you");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -187,7 +215,7 @@ const HeroBanner = () => {
                 Our counselor will contact you within 30 minutes
               </p>
 
-              <form className="space-y-4">
+              <form onSubmit={handleSubmit} className="space-y-4">
                 <input
                   type="text"
                   placeholder="Your Full Name"
@@ -222,7 +250,11 @@ const HeroBanner = () => {
                   </select>
                 </div>
 
-                <button className="w-full bg-[#C41A1A] hover:bg-[#a31616] text-white font-bold py-3 md:py-4 rounded-md text-sm tracking-wider flex items-center justify-center gap-2 transition-all outfit-font">
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full bg-[#C41A1A] hover:bg-[#a31616] text-white font-bold py-3 md:py-4 rounded-md text-sm tracking-wider flex items-center justify-center gap-2 transition-all outfit-font"
+                >
                   Get FREE Callback Now <ArrowRight size={18} />
                 </button>
                 <p className="text-[12px] text-center text-[#BAADAD] outfit-font mt-4">
