@@ -1,11 +1,44 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import { Phone, MapPin, Send, MessageCircle, Shield } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
+type UtmFields = {
+  utmSource: string;
+  utmMedium: string;
+  utmCampaign: string;
+  utmTerm: string;
+  utmKeyword: string;
+};
+
+const UTM_STORAGE_KEY = "sri:utm";
+
+function getUtmFromLocation(): UtmFields {
+  const params = new URLSearchParams(window.location.search);
+  return {
+    utmSource: params.get("utm_source") ?? "",
+    utmMedium: params.get("utm_medium") ?? "",
+    utmCampaign: params.get("utm_campaign") ?? "",
+    utmTerm: params.get("utm_term") ?? "",
+    utmKeyword: params.get("utm_keyword") ?? "",
+  };
+}
+
+function safeReadStoredUtm(): Partial<UtmFields> {
+  try {
+    const raw = window.localStorage.getItem(UTM_STORAGE_KEY);
+    if (!raw) return {};
+    const parsed = JSON.parse(raw) as Partial<UtmFields> | null;
+    return parsed && typeof parsed === "object" ? parsed : {};
+  } catch {
+    return {};
+  }
+}
+
 const ContactSection = () => {
   const navigate = useNavigate();
   const leadsheetWebhookUrl = useMemo(() => import.meta.env.VITE_LEADSHEET_WEBHOOK_URL as string | undefined, []);
+  const crmApiUrl = useMemo(() => import.meta.env.VITE_CRM_API_URL as string | undefined, []);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
@@ -14,6 +47,29 @@ const ContactSection = () => {
     course: "",
     message: "",
   });
+  const [utm, setUtm] = useState<UtmFields>(() => {
+    const fromUrl = getUtmFromLocation();
+    const stored = safeReadStoredUtm();
+    return {
+      utmSource: fromUrl.utmSource || stored.utmSource || "",
+      utmMedium: fromUrl.utmMedium || stored.utmMedium || "",
+      utmCampaign: fromUrl.utmCampaign || stored.utmCampaign || "",
+      utmTerm: fromUrl.utmTerm || stored.utmTerm || "",
+      utmKeyword: fromUrl.utmKeyword || stored.utmKeyword || "",
+    };
+  });
+
+  useEffect(() => {
+    const fromUrl = getUtmFromLocation();
+    if (fromUrl.utmSource || fromUrl.utmMedium || fromUrl.utmCampaign || fromUrl.utmTerm || fromUrl.utmKeyword) {
+      setUtm(fromUrl);
+      try {
+        window.localStorage.setItem(UTM_STORAGE_KEY, JSON.stringify(fromUrl));
+      } catch {
+        // ignore
+      }
+    }
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -21,6 +77,26 @@ const ContactSection = () => {
 
     setIsSubmitting(true);
     try {
+      const payload = new URLSearchParams({
+        name: formData.name.trim(),
+        phone: formData.phone.trim(),
+        email: formData.email.trim(),
+        course: formData.course,
+        message: formData.message.trim(),
+        pageUrl: window.location.href,
+        submittedAt: new Date().toISOString().slice(0, 10),
+        utm_source: utm.utmSource,
+        utm_medium: utm.utmMedium,
+        utm_campaign: utm.utmCampaign,
+        utm_term: utm.utmTerm,
+        utm_keyword: utm.utmKeyword,
+      });
+
+      if (crmApiUrl) {
+        const url = crmApiUrl.includes("?") ? `${crmApiUrl}&${payload.toString()}` : `${crmApiUrl}?${payload.toString()}`;
+        await fetch(url, { method: "GET" });
+      }
+
       if (leadsheetWebhookUrl) {
         const payload = new URLSearchParams({
           name: formData.name.trim(),
@@ -30,6 +106,11 @@ const ContactSection = () => {
           message: formData.message.trim(),
           pageUrl: window.location.href,
           submittedAt: new Date().toISOString().slice(0, 10),
+          utm_source: utm.utmSource,
+          utm_medium: utm.utmMedium,
+          utm_campaign: utm.utmCampaign,
+          utm_term: utm.utmTerm,
+          utm_keyword: utm.utmKeyword,
         });
 
         const url = leadsheetWebhookUrl.includes("?")
@@ -109,6 +190,11 @@ const ContactSection = () => {
             viewport={{ once: true }}
           >
             <form onSubmit={handleSubmit} className="glass-card p-8">
+              <input type="hidden" name="utm_source" value={utm.utmSource} />
+              <input type="hidden" name="utm_medium" value={utm.utmMedium} />
+              <input type="hidden" name="utm_campaign" value={utm.utmCampaign} />
+              <input type="hidden" name="utm_term" value={utm.utmTerm} />
+              <input type="hidden" name="utm_keyword" value={utm.utmKeyword} />
               <h3 className="font-display text-xl font-bold text-foreground mb-1">Request a FREE Callback</h3>
               <p className="text-muted-foreground text-sm mb-6">Our counselor will contact you within 30 minutes</p>
 
