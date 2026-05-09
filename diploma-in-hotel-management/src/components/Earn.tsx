@@ -63,7 +63,7 @@ const Earn = () => {
   ];
 
   return (
-    <section className="py-16 md:py-24 bg-white font-serif">
+    <section className="py-14 md:py-20 px-6 bg-white">
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -121,13 +121,13 @@ const Earn = () => {
       </div>
 
       <div className="lg:hidden flex flex-col items-center gap-10 px-3">
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-6 justify-items-center">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-6 justify-items-center w-full">
           {benefits.map((benefit, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, x: index % 2 === 0 ? -20 : 20 }}
               whileInView={{ opacity: 1, x: 0 }}
-              className="flex flex-col items-center justify-center rounded-full bg-[#A33B3F] text-white text-center shadow-xl w-36 h-36 px-4 py-0"
+              className="flex flex-col items-center justify-center rounded-full bg-[#A33B3F] text-white text-center shadow-xl w-36 md:w-48 h-36 md:h-48 px-4 py-0"
             >
               <p className="text-base md:text-lg font-bold mb-1 leading-tight cormorant-garamond-font">
                 {benefit.title}
@@ -140,7 +140,7 @@ const Earn = () => {
           <motion.div
             initial={{ opacity: 0, scale: 0.5 }}
             whileInView={{ opacity: 1, scale: 1 }}
-            className="w-36 h-36 rounded-full border-4 border-[#A33B3F] p-1 shadow-xl overflow-hidden"
+            className=" w-36 md:w-48 h-36 md:h-48 rounded-full border-4 border-[#A33B3F] p-1 shadow-xl overflow-hidden"
           >
             <img
               src={Student}

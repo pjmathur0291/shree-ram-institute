@@ -170,7 +170,6 @@
 
 /* Slide */
 .swiper-slide {
-  transition: all 0.5s ease;
   transform: scale(0.82);
   opacity: 0.5;
   display: flex;
@@ -179,7 +178,7 @@
 
 /* Active Slide */
 .swiper-slide-active {
-  transform: scale(1);
+  transform: scale(1.01);
   opacity: 1;
   z-index: 10;
 }
@@ -187,8 +186,10 @@
 /* Side Slides */
 .swiper-slide-prev,
 .swiper-slide-next {
-  transform: scale(0.88);
-  opacity: 0.7;
+  opacity: 0.8;
+  /* Neighbors slightly visible */
+  transform: scale(0.9);
+  filter: blur(0)
 }
 
 /* Card */
@@ -198,6 +199,7 @@
   aspect-ratio: 16/10;
   border-radius: 24px;
   overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
 }
 
 /* Image */

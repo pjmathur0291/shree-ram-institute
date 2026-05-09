@@ -11,20 +11,20 @@ const FAQItem = ({ question, answer, isOpen, onClick }: any) => {
       className="border-b border-red-100/50"
     >
       <button
-        className="w-full py-6 flex justify-between items-center text-left transition-all"
+        className="w-full py-4 md:py-6 flex justify-between items-center text-left transition-all"
         onClick={onClick}
       >
-        <span className="justify-center text-color-red-6 text-xl font-medium cormorant-garamond-font">
+        <span className="justify-center text-color-red-6 text-lg md:text-xl font-medium cormorant-garamond-font">
           {question}
         </span>
 
         {/* Icon Animation */}
         <motion.span
-          animate={{ rotate: isOpen ? 45 : 0 }}
+          animate={{ rotate: isOpen ? 0 : 0 }}
           transition={{ duration: 0.3 }}
-          className="text-red-700 text-3xl leading-none"
+          className="text-xl text-[#C41A1A] outfit-font"
         >
-          +
+          {isOpen ? "−" : "+"}
         </motion.span>
       </button>
 
@@ -43,7 +43,7 @@ const FAQItem = ({ question, answer, isOpen, onClick }: any) => {
               animate={{ y: 0 }}
               exit={{ y: -10 }}
               transition={{ duration: 0.3 }}
-              className="pb-6 text-[#8A7070] text-base font-normal outfit-font leading-7"
+              className="pb-4 md:pb-6 text-[#8A7070]  text-sm md:text-base font-normal outfit-font leading-7"
             >
               {answer}
             </motion.p>
@@ -90,7 +90,7 @@ const FAQ = () => {
   ];
 
   return (
-    <section className="bg-white py-20 px-6 overflow-hidden">
+    <section className="bg-white py-14 md:py-20 px-6 overflow-hidden">
       <div className="max-w-4xl mx-auto">
         {/* Heading Animation */}
         <motion.h2
@@ -98,7 +98,7 @@ const FAQ = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7 }}
           viewport={{ once: true }}
-          className="text-center text-4xl md:text-5xl font-serif mb-16 text-[#1a1a1a]"
+          className="text-center text-3xl md:text-5xl font-serif mb-8 md:mb-14 text-[#1a1a1a]"
         >
           Frequently <span className="text-red-800 italic">Asked</span>{" "}
           Questions

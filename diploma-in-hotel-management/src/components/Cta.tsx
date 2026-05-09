@@ -4,7 +4,7 @@ import CTA_BG from "../assets/Container.webp";
 
 const Cta = () => {
   return (
-    <div className="flex items-center justify-center py-16 md:py-20 bg-[#0D0203] px-4 overflow-hidden">
+    <div className="flex items-center justify-center py-14 md:py-20 bg-[#0D0203] px-6 overflow-hidden">
       <motion.div
         initial={{ opacity: 0, y: 80, scale: 0.95 }}
         whileInView={{ opacity: 1, y: 0, scale: 1 }}
@@ -67,7 +67,7 @@ const Cta = () => {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="w-fit outfit-font bg-white text-[#931B1C] font-bold px-4 py-2 rounded-sm uppercase text-xs md:text-sm"
+              className="w-fit outfit-font bg-white text-[#931B1C] font-bold px-4 py-2 rounded-sm uppercase text-sm"
             >
               Apply Now
             </motion.button>
@@ -78,7 +78,7 @@ const Cta = () => {
                 backgroundColor: "rgba(255,255,255,0.1)",
               }}
               whileTap={{ scale: 0.95 }}
-              className="border border-[#FFFFFF59] text-[#FFFFFFD9] text-xs md:text-sm px-4 py-2 rounded-lg font-medium"
+              className="border border-[#FFFFFF59] text-[#FFFFFFD9] font-bold text-sm px-4 py-2 rounded-sm font-medium w-fit outfit-font"
             >
               Know More
             </motion.button>

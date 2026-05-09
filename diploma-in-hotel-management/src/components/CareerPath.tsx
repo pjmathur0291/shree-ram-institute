@@ -75,12 +75,12 @@ const CareerPath = () => {
   };
   return (
     <section
-      className="py-16 md:py-20 px-4"
+      className="py-14 md:py-20 px-6 bg-black/70"
       style={{
         background: `url(${CAREER_BG}) top center / cover no-repeat`,
       }}
     >
-      <div className="container flex flex-col lg:flex-row items-center justify-between gap-6 md:gap-12 md:gap-auto">
+      <div className="container flex flex-col lg:flex-row lg:items-center justify-between gap-6 md:gap-12 md:gap-auto">
         <motion.div
           initial={{ opacity: 0, x: -50 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -91,7 +91,7 @@ const CareerPath = () => {
           <h2 className="text-4xl md:text-5xl font-bold cormorant-garamond-font">
             Career Paths After Your Diploma
           </h2>
-          <p className="text-[#FFFFFFCC] text-lg mb-4 md:mb-10 max-w-sm outfit-font">
+          <p className="text-[#FFFFFFCC] text-lg mb-4 lg:mb-10 max-w-sm outfit-font">
             Step into roles across hotels, restaurants, and service
             environments.
           </p>

@@ -2,6 +2,7 @@ import React from "react";
 import Hero from "../assets/hero.webp";
 import RightCheck from "../assets/Background.webp";
 import { motion } from "framer-motion";
+import { ArrowRight } from "lucide-react";
 
 const HeroBanner = () => {
   const containerVariants = {
@@ -9,36 +10,48 @@ const HeroBanner = () => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2, // Har element 0.2s ke gap par aayega
+        staggerChildren: 0.2,
         delayChildren: 0.3,
       },
     },
   };
 
-  // Individual Item Variants
   const itemVariants = {
-    hidden: { opacity: 0, y: 20 }, // Slide up effect jyada smooth lagta hai side slide se
+    hidden: { opacity: 0, y: 20 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] }, // Custom cubic-bezier for premium feel
+      transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] },
+    },
+  };
+  const formVariant = {
+    hidden: { opacity: 0, x: 50 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        type: "spring",
+        stiffness: 100,
+        damping: 20,
+        delay: 0.4,
+      },
     },
   };
   return (
     <section
-      className="flex items-center py-[90px] px-[10px] md:py-[140px] lg:px-[70px] h-100"
+      className="flex flex-col gap-[44px] md:gap-[60px] items-center py-[60px] px-[10px] md:py-[90px] lg:px-[70px]"
       style={{
         background: `url(${Hero}) top center / cover no-repeat`,
       }}
     >
       <motion.div
-        className="container mx-auto px-6 md:px-12 lg:px-24"
+        className="container lg:mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.3 }}
         variants={containerVariants}
       >
-        <div className="max-w-2xl text-white flex flex-col gap-[24px]">
+        <div className="lg:max-w-xl text-white flex flex-col gap-[14px] lg:gap-[24px]">
           {/* Badge */}
           <motion.span
             variants={itemVariants}
@@ -107,6 +120,70 @@ const HeroBanner = () => {
             </motion.button>
           </motion.div>
         </div>
+        <motion.div
+          variants={formVariant}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="justify-center flex"
+        >
+          <div className="bg-white rounded-lg shadow-2xl overflow-hidden lg:max-w-lg p-6 lg:p-12 flex flex-col gap-6">
+            <div className="bg-[#C41A1A] text-white text-[10px] font-semibold px-4 py-1 inline-block outfit-font uppercase w-fit rounded-sm">
+              Free Counselling
+            </div>
+            <div className="">
+              <h2 className="text-2xl md:text-3xl font-bold text-[#180808] max-w-sm cormorant-garamond-font mb-2">
+                Start You Hospitality Journey
+              </h2>
+              <p className="text-[#8A7070] text-sm outfit-font mb-6 font-medium">
+                Our counselor will contact you within 30 minutes
+              </p>
+
+              <form className="space-y-4">
+                <input
+                  type="text"
+                  placeholder="Your Full Name"
+                  className="w-full px-4 py-3 border border-[#EBE0D8] bg-[#FAFAF8] rounded-md outline-none inline-flex justify-center items-start overflow-hidden text-[#B8A8A0] text-sm font-normal outfit-font"
+                />
+                <input
+                  type="tel"
+                  placeholder="Phone Number (WhatsApp preferred)"
+                  className="w-full px-4 py-3 border border-[#EBE0D8] bg-[#FAFAF8] rounded-md outline-none inline-flex justify-center items-start overflow-hidden text-[#B8A8A0] text-sm font-normal outfit-font"
+                />
+                <input
+                  type="email"
+                  placeholder="Email Address"
+                  className="w-full px-4 py-3 border border-[#EBE0D8] bg-[#FAFAF8] rounded-md outline-none inline-flex justify-center items-start overflow-hidden text-[#B8A8A0] text-sm font-normal outfit-font"
+                />
+
+                <div className="grid gap-4">
+                  {/* <select className="w-full px-4 py-3 border border-[#EBE0D8] bg-[#FAFAF8] rounded-md outline-none inline-flex justify-center items-start overflow-hidden text-[#180808] text-sm font-normal outfit-font">
+                    <option>Select State</option>
+                  </select> */}
+                  <select className="w-full px-4 py-3 border border-[#EBE0D8] bg-[#FAFAF8] rounded-md outline-none inline-flex justify-center items-start overflow-hidden text-[#180808] text-sm font-normal outfit-font">
+                    <option>Program</option>
+                    <option value="Bachelor of Hotel Management (BHM)">
+                      Bachelor of Hotel Management (BHM)
+                    </option>
+                    <option value="Diploma in Hotel Management">
+                      Diploma in Hotel Management
+                    </option>
+                    <option value="Culinary Arts">Culinary Arts</option>
+                    <option value="Bartending">Bartending</option>
+                    <option value="Bakery">Bakery</option>
+                  </select>
+                </div>
+
+                <button className="w-full bg-[#C41A1A] hover:bg-[#a31616] text-white font-bold py-3 md:py-4 rounded-md text-sm tracking-wider flex items-center justify-center gap-2 transition-all outfit-font">
+                  Get FREE Callback Now <ArrowRight size={18} />
+                </button>
+                <p className="text-[12px] text-center text-[#BAADAD] outfit-font mt-4">
+                  Your information is secure and will not be shared.
+                </p>
+              </form>
+            </div>
+          </div>
+        </motion.div>
       </motion.div>
     </section>
   );

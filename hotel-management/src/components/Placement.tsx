@@ -18,16 +18,16 @@ const Placement = () => {
     >
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
         <motion.div
-          initial={{ opacity: 0, x: -80 }}
-          whileInView={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, y: -80 }}
+          whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
           className="space-y-6 md:space-y-8"
         >
           <header>
             <h2 className="text-4xl lg:text-6xl text-white font-bold leading-tight cormorant-garamond-font max-w-lg">
-              A Placement Record
-              <span className="text-[#FACC15]"> That Stands Strong</span>
+              Where training turns {""}
+              <span className="text-[#FACC15]"> into real placements.</span>
             </h2>
             <p className="mt-2 md:mt-6 text-white text-sm md:text-base leading-relaxed outfit-font font-light max-w-lg">
               Our students don't just graduate — they step directly into roles
@@ -42,22 +42,22 @@ const Placement = () => {
               <span className="inline-block bg-red-800 text-[10px] font-bold px-3 py-1 rounded mb-4 tracking-widest uppercase">
                 Placement Record
               </span>
-              <div className="flex flex-col gap-3">
-                <span className="text-5xl md:text-6xl font-serif font-bold cormorant-garamond-font">
+              <div className="flex flex-col gap-1">
+                <span className="text-[24px] md:font-[30px] font-semibold outfit-font">
                   <Counter end={97.2} suffix="%" />
                 </span>
-                <span className="text-[#B1B1B1] font-medium text-base mt-1 outfit-font">
+                <span className="text-[#B1B1B1] font-medium text-base outfit-font">
                   Placement Record
                 </span>
               </div>
             </div>
 
             <div>
-              <div className="flex flex-col gap-3">
-                <span className="text-4xl md:text-5xl font-serif font-bold cormorant-garamond-font">
+              <div className="flex flex-col gap-1">
+                <span className="text-[24px] md:font-[30px] font-semibold outfit-font">
                   <Counter end={5000} suffix="+" />
                 </span>
-                <span className="text-[#B1B1B1] font-medium text-base mt-1 outfit-font">
+                <span className="text-[#B1B1B1] font-medium text-base outfit-font">
                   Students Placed
                 </span>
               </div>
@@ -66,8 +66,8 @@ const Placement = () => {
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, x: 80, scale: 0.9 }}
-          whileInView={{ opacity: 1, x: 0, scale: 1 }}
+          initial={{ opacity: 0, y: 80, scale: 0.9 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 1 }}
           viewport={{ once: true }}
           className="flex justify-center lg:justify-end items-center"

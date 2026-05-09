@@ -29,7 +29,7 @@ const HeartOfDehradun = () => {
     visible: { opacity: 1, scale: 1, y: 0, transition: { duration: 0.6 } },
   };
   return (
-    <section className="bg-[#F8FAFC] py-16 px-4">
+    <section className="bg-[#F8FAFC] py-14 md:py-20 px-6">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
@@ -56,7 +56,7 @@ const HeartOfDehradun = () => {
         >
           <motion.div
             variants={itemVariants}
-            className=" md:col-span-4 lg:col-span-6 max-h-[400px] overflow-hidden rounded-xl"
+            className=" md:col-span-4 lg:col-span-6 min-h-[250px] md:max-h-[400px] overflow-hidden rounded-xl"
           >
             <img
               src={images[0].src}
@@ -67,7 +67,7 @@ const HeartOfDehradun = () => {
 
           <motion.div
             variants={itemVariants}
-            className=" md:col-span-4 lg:col-span-3 max-h-[400px] overflow-hidden rounded-xl"
+            className=" md:col-span-4 lg:col-span-3 max-h-[250px] md:max-h-[400px] overflow-hidden rounded-xl"
           >
             <img
               src={images[1].src}
@@ -78,7 +78,7 @@ const HeartOfDehradun = () => {
 
           <motion.div
             variants={itemVariants}
-            className=" md:col-span-4 lg:col-span-3 max-h-[400px] overflow-hidden rounded-xl"
+            className=" md:col-span-4 lg:col-span-3 max-h-[250px] md:max-h-[400px] overflow-hidden rounded-xl"
           >
             <img
               src={images[2].src}
@@ -89,7 +89,7 @@ const HeartOfDehradun = () => {
 
           <motion.div
             variants={itemVariants}
-            className=" md:col-span-4 lg:col-span-3 max-h-[400px] overflow-hidden rounded-xl"
+            className=" md:col-span-4 lg:col-span-3 max-h-[250px] md:max-h-[400px] overflow-hidden rounded-xl"
           >
             <img
               src={images[3].src}
@@ -100,7 +100,7 @@ const HeartOfDehradun = () => {
 
           <motion.div
             variants={itemVariants}
-            className=" md:col-span-4 lg:col-span-6 max-h-[400px] overflow-hidden rounded-xl"
+            className=" md:col-span-4 lg:col-span-6 max-h-[250px] md:max-h-[400px] overflow-hidden rounded-xl"
           >
             <img
               src={images[4].src}
@@ -111,7 +111,7 @@ const HeartOfDehradun = () => {
 
           <motion.div
             variants={itemVariants}
-            className=" md:col-span-4 lg:col-span-3 max-h-[400px] overflow-hidden rounded-xl"
+            className=" md:col-span-4 lg:col-span-3 max-h-[250px] md:max-h-[400px] overflow-hidden rounded-xl"
           >
             <img
               src={images[5].src}

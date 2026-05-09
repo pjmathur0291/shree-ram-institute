@@ -10,6 +10,7 @@ export default {
     "./bartending/**/*.{ts,tsx}",
     "./bachelors-in-hotel-management/**/*.{ts,tsx}",
     "./diploma-in-hotel-management/**/*.{ts,tsx}",
+    "./hotel-management/**/*.{ts,tsx}",
   ],
   prefix: "",
   theme: {

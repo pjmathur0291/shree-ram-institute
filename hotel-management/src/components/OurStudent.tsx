@@ -39,12 +39,12 @@ const OurStudent = () => {
 
   return (
     <section
-      className="text-white py-16 md:py-20 bg-black overflow-hidden"
+      className="text-white py-14 md:py-20 px-6 overflow-hidden"
       style={{
         background: `url(${Background}) top center / cover no-repeat`,
       }}
     >
-      <div className="relative z-10 max-w-6xl mx-auto w-full px-6 ">
+      <div className="relative z-10 max-w-6xl mx-auto w-full">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}

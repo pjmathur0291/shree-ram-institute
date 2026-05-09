@@ -16,14 +16,14 @@ const DHM = () => {
       <HeroBanner />
       <Earn />
       <WhyDHM />
-      {/* <RequestForm /> */}
+      <RequestForm />
       <Placement />
       <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8, ease: "easeOut" }}
-        className="bg-[#F3F0FA] py-16 md:py-20 px-4 flex flex-col items-center justify-center text-center"
+        className="bg-[#F3F0FA] py-14 md:py-20 px-6 flex flex-col items-center justify-center text-center"
       >
         <div className="max-w-3xl mx-auto flex flex-col items-center gap-[32px]">
           <motion.h2
@@ -78,7 +78,7 @@ const DHM = () => {
       <Cta />
       <section>
         <div className="flex items-center justify-center bg-red-900 py-4 ">
-          <div className="justify-center text-white text-sm md:text-lg font-medium outfit-font ">
+          <div className="justify-center text-white text-sm md:text-base font-medium outfit-font ">
             Design and Developed By Mediagarh
           </div>
         </div>

@@ -8,6 +8,7 @@ import ThankYou from "./pages/ThankYou.tsx";
 import NotFound from "./pages/NotFound.tsx";
 import Bartending from "../bartending/pages/Bartending.tsx";
 import HotelManagement from "../bachelors-in-hotel-management/src/pages/HotelManagement.tsx";
+import HM from "../hotel-management/src/pages/HM.tsx";
 import DHM from "../diploma-in-hotel-management/src/pages/DHM.tsx";
 const queryClient = new QueryClient();
 
@@ -25,6 +26,7 @@ const App = () => (
             element={<HotelManagement />}
           />
           <Route path="/diploma-in-hotel-management" element={<DHM />} />
+          <Route path="/hotel-management" element={<HM />} />
           <Route path="/thank-you" element={<ThankYou />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
