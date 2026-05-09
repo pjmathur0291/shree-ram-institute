@@ -218,16 +218,30 @@ const HeroBanner = () => {
               <form onSubmit={handleSubmit} className="space-y-4">
                 <input
                   type="text"
+                  required
+                  value={formData.name}
+                  onChange={(e) =>
+                    setFormData({ ...formData, name: e.target.value })
+                  }
                   placeholder="Your Full Name"
                   className="w-full px-4 py-3 border border-[#EBE0D8] bg-[#FAFAF8] rounded-md outline-none inline-flex justify-center items-start overflow-hidden text-[#B8A8A0] text-sm font-normal outfit-font"
                 />
                 <input
                   type="tel"
+                  required
+                  value={formData.phone}
+                  onChange={(e) =>
+                    setFormData({ ...formData, phone: e.target.value })
+                  }
                   placeholder="Phone Number (WhatsApp preferred)"
                   className="w-full px-4 py-3 border border-[#EBE0D8] bg-[#FAFAF8] rounded-md outline-none inline-flex justify-center items-start overflow-hidden text-[#B8A8A0] text-sm font-normal outfit-font"
                 />
                 <input
                   type="email"
+                  value={formData.email}
+                  onChange={(e) =>
+                    setFormData({ ...formData, email: e.target.value })
+                  }
                   placeholder="Email Address"
                   className="w-full px-4 py-3 border border-[#EBE0D8] bg-[#FAFAF8] rounded-md outline-none inline-flex justify-center items-start overflow-hidden text-[#B8A8A0] text-sm font-normal outfit-font"
                 />
@@ -236,7 +250,13 @@ const HeroBanner = () => {
                   {/* <select className="w-full px-4 py-3 border border-[#EBE0D8] bg-[#FAFAF8] rounded-md outline-none inline-flex justify-center items-start overflow-hidden text-[#180808] text-sm font-normal outfit-font">
                     <option>Select State</option>
                   </select> */}
-                  <select className="w-full px-4 py-3 border border-[#EBE0D8] bg-[#FAFAF8] rounded-md outline-none inline-flex justify-center items-start overflow-hidden text-[#180808] text-sm font-normal outfit-font">
+                  <select
+                    value={formData.program}
+                    onChange={(e) =>
+                      setFormData({ ...formData, program: e.target.value })
+                    }
+                    className="w-full px-4 py-3 border border-[#EBE0D8] bg-[#FAFAF8] rounded-md outline-none inline-flex justify-center items-start overflow-hidden text-[#180808] text-sm font-normal outfit-font"
+                  >
                     <option>Program</option>
                     <option value="Bachelor of Hotel Management (BHM)">
                       Bachelor of Hotel Management (BHM)
