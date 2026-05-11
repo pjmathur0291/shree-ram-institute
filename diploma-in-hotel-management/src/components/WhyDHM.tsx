@@ -44,7 +44,6 @@ const WhyDHM = () => {
       variants={cardVariants}
       whileHover={{
         y: -10,
-        borderColor: "rgba(196, 26, 26, 0.5)", // Red border glow on hover
         backgroundColor: "#1f1f1f",
       }}
       className={`bg-[#1A1A1A] border border-white/10 rounded-3xl p-6 md:p-8 flex flex-col justify-center ${className}`}
