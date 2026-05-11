@@ -43,7 +43,7 @@ const WhyDHM = () => {
     <motion.div
       variants={cardVariants}
       whileHover={{
-        y: -10,
+        y: -6,
         backgroundColor: "#1f1f1f",
       }}
       className={`bg-[#1A1A1A] border border-white/10 rounded-3xl p-6 md:p-8 flex flex-col justify-center ${className}`}
@@ -85,7 +85,10 @@ const WhyDHM = () => {
       >
         <motion.div
           variants={cardVariants}
-          whileHover={{ y: -8 }}
+          whileHover={{
+            y: -6,
+            backgroundColor: "#1f1f1f",
+          }}
           className="md:col-span-4 bg-[#1A1A1A] border border-white/10 rounded-3xl p-6 md:p-8 flex flex-col justify-between"
         >
           <div>
@@ -124,7 +127,10 @@ const WhyDHM = () => {
         <div className="md:col-span-4 space-y-4">
           <motion.div
             variants={cardVariants}
-            whileHover={{ y: -8 }}
+            whileHover={{
+              y: -6,
+              backgroundColor: "#1f1f1f",
+            }}
             className="bg-[#1A1A1A] border border-white/10 rounded-3xl p-6 md:p-8 relative overflow-hidden h-[48%] flex flex-col justify-center"
           >
             <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full blur-3xl"></div>
@@ -145,7 +151,10 @@ const WhyDHM = () => {
 
         <motion.div
           variants={cardVariants}
-          whileHover={{ y: -8 }}
+          whileHover={{
+            y: -6,
+            backgroundColor: "#1f1f1f",
+          }}
           className="md:col-span-8 bg-[#1A1A1A] border border-white/10 rounded-3xl p-6 md:p-8"
         >
           <h3 className="text-xl md:text-3xl font-bold mb-2 outfit-font">
@@ -173,7 +182,10 @@ const WhyDHM = () => {
 
         <motion.div
           variants={cardVariants}
-          whileHover={{ y: -8 }}
+          whileHover={{
+            y: -6,
+            backgroundColor: "#1f1f1f",
+          }}
           className="md:col-span-4 bg-[#1A1A1A] border border-white/10 rounded-3xl p-6 md:p-8 relative overflow-hidden group"
         >
           <div className="absolute bottom-0 right-0 w-40 h-40 bg-white/10 rounded-full blur-[80px]"></div>
