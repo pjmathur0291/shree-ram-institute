@@ -92,10 +92,10 @@ const HeroBanner = () => {
           {/* Main Heading */}
           <motion.h1
             variants={itemVariants}
-            className="text-4xl md:text-5xl lg:text-6xl font-serif leading-tight  cormorant-garamond-font max-w-[600px]"
+            className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight  cormorant-garamond-font max-w-[600px]"
           >
             A diploma built for
-            <div className="italic mb-2">
+            <div className="italic mb-2 font-light">
               <span className="text-red-600 italic">5-star</span> and
               international
             </div>
@@ -161,7 +161,7 @@ const HeroBanner = () => {
             </div>
             <div className="">
               <h2 className="text-2xl md:text-3xl font-bold text-[#180808] max-w-sm cormorant-garamond-font mb-2">
-                Start You Hospitality Journey
+                Start Your Hotel Journey
               </h2>
               <p className="text-[#8A7070] text-sm outfit-font mb-6 font-medium">
                 Our counselor will contact you within 30 minutes
@@ -176,7 +176,7 @@ const HeroBanner = () => {
                     setFormData({ ...formData, name: e.target.value })
                   }
                   placeholder="Your Full Name"
-                  className="w-full px-4 py-3 border border-[#EBE0D8] bg-[#FAFAF8] rounded-md outline-none inline-flex justify-center items-start overflow-hidden text-[#B8A8A0] text-sm font-normal outfit-font"
+                  className="w-full px-4 py-3 border border-[#EBE0D8] bg-[#FAFAF8] rounded-md outline-none inline-flex justify-center items-start overflow-hidden placeholder:text-[#B8A8A0] text-[#B8A8A0] text-sm font-normal outfit-font"
                 />
                 <input
                   type="tel"
@@ -186,7 +186,7 @@ const HeroBanner = () => {
                     setFormData({ ...formData, phone: e.target.value })
                   }
                   placeholder="Phone Number (WhatsApp preferred)"
-                  className="w-full px-4 py-3 border border-[#EBE0D8] bg-[#FAFAF8] rounded-md outline-none inline-flex justify-center items-start overflow-hidden text-[#B8A8A0] text-sm font-normal outfit-font"
+                  className="w-full px-4 py-3 border border-[#EBE0D8] bg-[#FAFAF8] rounded-md outline-none inline-flex justify-center items-start overflow-hidden placeholder:text-[#B8A8A0] text-[#B8A8A0] text-sm font-normal outfit-font"
                 />
                 <input
                   type="email"
@@ -196,7 +196,7 @@ const HeroBanner = () => {
                     setFormData({ ...formData, email: e.target.value })
                   }
                   placeholder="Email Address"
-                  className="w-full px-4 py-3 border border-[#EBE0D8] bg-[#FAFAF8] rounded-md outline-none inline-flex justify-center items-start overflow-hidden text-[#B8A8A0] text-sm font-normal outfit-font"
+                  className="w-full px-4 py-3 border border-[#EBE0D8] bg-[#FAFAF8] rounded-md outline-none inline-flex justify-center items-start overflow-hidden placeholder:text-[#B8A8A0] text-[#B8A8A0] text-sm font-normal outfit-font"
                 />
 
                 <div className="grid gap-4">
@@ -209,7 +209,7 @@ const HeroBanner = () => {
                     onChange={(e) =>
                       setFormData({ ...formData, program: e.target.value })
                     }
-                    className="w-full px-4 py-3 border border-[#EBE0D8] bg-[#FAFAF8] rounded-md outline-none inline-flex justify-center items-start overflow-hidden text-[#180808] text-sm font-normal outfit-font"
+                    className="w-full px-4 py-3 border border-[#EBE0D8] bg-[#FAFAF8] rounded-md outline-none inline-flex justify-center items-start overflow-hidden placeholder:text-[#B8A8A0] text-[#180808] text-sm font-normal outfit-font"
                   >
                     <option>Program</option>
                     <option value="Bachelor of Hotel Management (BHM)">

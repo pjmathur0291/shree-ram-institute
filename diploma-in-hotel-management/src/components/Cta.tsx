@@ -51,7 +51,7 @@ const Cta = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6, duration: 0.7 }}
             viewport={{ once: true }}
-            className="text-white/60 text-base md:text-lg font-medium outfit-font leading-6"
+            className="text-white/60 text-base md:text-lg font-medium outfit-font leading-6 mb-3 md:mb-4"
           >
             Step Into International And 5-Star Hotel Placements
           </motion.p>

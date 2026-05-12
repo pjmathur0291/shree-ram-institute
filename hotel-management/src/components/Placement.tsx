@@ -25,9 +25,13 @@ const Placement = () => {
           className="space-y-6 md:space-y-8"
         >
           <header>
-            <h2 className="text-4xl lg:text-6xl text-white font-bold leading-tight cormorant-garamond-font max-w-lg">
+            <h2 className="text-3xl lg:text-4xl text-white font-bold leading-tight cormorant-garamond-font max-w">
               Where training turns {""}
-              <span className="text-[#FACC15]"> into real placements.</span>
+              <br />
+              <span className="text-4xl lg:text-6xl bg-gradient-to-r from-[#FACC15] to-[#FEF08A] bg-clip-text text-transparent italic">
+                {" "}
+                into real placements.
+              </span>
             </h2>
             <p className="mt-2 md:mt-6 text-white text-sm md:text-base leading-relaxed outfit-font font-light max-w-lg">
               Our students don't just graduate — they step directly into roles
@@ -39,12 +43,9 @@ const Placement = () => {
           <div className="h-px bg-white/20 w-full max-w-md"></div>
           <div className="space-y-6">
             <div>
-              <span className="inline-block bg-red-800 text-[10px] font-bold px-3 py-1 rounded mb-4 tracking-widest uppercase">
-                Placement Record
-              </span>
               <div className="flex flex-col gap-1">
                 <span className="text-[24px] md:font-[30px] font-semibold outfit-font">
-                  <Counter end={97.2} suffix="%" />
+                  <Counter end={97.2} decimals={1} suffix="%" />
                 </span>
                 <span className="text-[#B1B1B1] font-medium text-base outfit-font">
                   Placement Record

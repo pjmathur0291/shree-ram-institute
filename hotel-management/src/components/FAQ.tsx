@@ -7,39 +7,35 @@ const FAQ = () => {
   const faqs = [
     {
       id: 0,
-      question: "What are the eligibility criteria?",
-      answer:
-        "12th pass students can apply for Certificate, Diploma, and Bachelor programs. For Masters, a Bachelor's degree in any stream is required. No specific stream restriction exists at 10+2 level.",
+      question: " What are the eligibility criteria?",
+      answer: "12th pass students can apply for most programs",
     },
     {
       id: 1,
       question: "Is placement support provided?",
       answer:
-        "Yes, we provide 100% placement assistance through our dedicated cell, connecting students with top luxury hotel brands globally.",
+        " Yes, students are guided and supported for placements in leading hotels",
     },
     {
       id: 2,
-      question: "Are internships included in the program?",
-      answer:
-        "Absolutely. Industrial training and internships are core components of our curriculum to ensure real-world exposure.",
+      question: "Are internships included?",
+      answer: "Yes, students get practical exposure through internships",
     },
     {
       id: 3,
       question: "What courses are available?",
       answer:
-        "We offer a wide range of programs including BHM, Diploma in Food Production, and specialized Culinary Arts certifications.",
+        "Certificate, Diploma, Bachelor, and PG programs in hotel management",
     },
     {
       id: 4,
-      question: "Are scholarships available?",
-      answer:
-        "Yes, we offer merit-based scholarships and special financial aid for deserving candidates based on academic performance.",
+      question: "Where is the institute located?",
+      answer: " In the heart of Dehradun, with easy accessibility",
     },
     {
       id: 5,
-      question: "Where is the institute located?",
-      answer:
-        "Our main campus is located in Dehradun, providing a serene environment perfect for professional hospitality training.",
+      question: "Are scholarships available?",
+      answer: " Yes, scholarships are available based on eligibility",
     },
   ];
 

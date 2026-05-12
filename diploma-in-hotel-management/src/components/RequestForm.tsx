@@ -57,7 +57,7 @@ const RequestForm = () => {
           <h3 className="font-display text-2xl font-bold text-foreground mb-4 text-center">
             Request a FREE Callback
           </h3>
-          <p className="text-[#000000B2] text-base outfit-font mb-6 font-light text-center">
+          <p className="text-[#999] text-base outfit-font mb-6 font-light text-center">
             Our counselor will contact you within 30 minutes
           </p>{" "}
           <form

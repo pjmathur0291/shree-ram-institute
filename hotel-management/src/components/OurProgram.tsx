@@ -8,17 +8,20 @@ const OurProgram = () => {
     {
       id: 1,
       image: Frame4, // Replace with your image path
-      title: "Hotel Management",
+      title: "Diploma in Hotel Management",
+      para: "A fast-track program designed for practical learning and early career opportunities",
     },
     {
       id: 2,
       image: Frame5, // Replace with your image path
-      title: "Culinary Arts",
+      title: "Bachelor in Hotel Management",
+      para: "A complete program covering operations, management, and real-world exposure",
     },
     {
       id: 3,
       image: Frame6, // Replace with your image path
-      title: "Hospitality Operations",
+      title: "Masters in Hotel Management",
+      para: "Advanced program focused on career growth and higher roles",
     },
   ];
 
@@ -64,15 +67,18 @@ const OurProgram = () => {
                   alt={program.title}
                   className="w-full h-full object-cover transition-all duration-700 ease-in-out grayscale group-hover:grayscale-0 group-hover:scale-110"
                 />
-                <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/80 to-transparent"></div>
+                <div className="group-hover:relative absolute group-hover:opacity-0 inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/80 to-transparent"></div>
               </div>
 
               {/* Title (Hidden by default, shown on hover or stay visible) */}
-              {/* <div className="absolute inset-0 flex items-end p-8">
-                <h3 className="text-white text-2xl font-serif opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500">
+              <div className="absolute bottom-0 flex flex-col items-start p-6 md:p-8  transform translate-y-4 group-hover:translate-y-0 transition-all duration-500 gap-3 md:gap-2">
+                <h3 className="justify-center text-xl md:text-2xl font-medium outfit-font leading-4 text-white opacity-0 group-hover:opacity-100 md:max-w-[200px] leading-relaxed">
                   {program.title}
                 </h3>
-              </div> */}
+                <p className="justify-center text-white/70 text-sm font-normal opacity-0 group-hover:opacity-100">
+                  {program.para}
+                </p>
+              </div>
             </motion.div>
           ))}
         </div>

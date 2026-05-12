@@ -173,9 +173,9 @@ const HeroBanner = () => {
 
             <motion.h1
               variants={itemVariants}
-              className="text-4xl lg:text-6xl font-serif leading-[40px] lg:leading-[60px] cormorant-garamond-font max-w-[600px]"
+              className="text-4xl lg:text-6xl leading-[40px] lg:leading-[65px] cormorant-garamond-font max-w-[600px] font-medium"
             >
-              Recognised Institute for {""}
+              Recognised Institute for
               <span className="text-[#F0BE3A] "> Hotel Management {""}</span>
               Build Your Career in Hotels
             </motion.h1>
@@ -209,7 +209,7 @@ const HeroBanner = () => {
             </div>
             <div className="">
               <h2 className="text-2xl md:text-3xl font-bold text-[#180808] max-w-sm cormorant-garamond-font mb-2">
-                Start You Hospitality Journey
+                Start Your Hotel Journey
               </h2>
               <p className="text-[#8A7070] text-sm outfit-font mb-6 font-medium">
                 Our counselor will contact you within 30 minutes

@@ -165,7 +165,7 @@
 /* Main Slider */
 .student-slider-container {
   width: 100%;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 /* Slide */
@@ -178,7 +178,7 @@
 
 /* Active Slide */
 .swiper-slide-active {
-  transform: scale(1.01);
+  transform: scale(1.0299);
   opacity: 1;
   z-index: 10;
 }
@@ -187,18 +187,17 @@
 .swiper-slide-prev,
 .swiper-slide-next {
   opacity: 0.8;
-  /* Neighbors slightly visible */
-  transform: scale(0.9);
+  transform: scale(0.8);
   filter: blur(0)
 }
 
 /* Card */
 .student-card {
   width: 100%;
-  max-width: 520px;
-  aspect-ratio: 16/10;
+  max-width: 700px;
+  aspect-ratio: 18/12;
   border-radius: 24px;
-  overflow: hidden;
+  overflow-x: hidden;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
 }
 
@@ -231,23 +230,23 @@
 /* Desktop */
 @media (min-width: 1064px) {
   .swiper-slide-active .student-card {
-    max-width: 520px;
+    max-width: 600px;
   }
 
   .swiper-slide-prev .student-card,
   .swiper-slide-next .student-card {
-    max-width: 320px;
+    max-width: 400px;
   }
 }
 
 @media (min-width: 764px) {
   .swiper-slide-active .student-card {
-    max-width: 620px;
+    max-width: 600px;
   }
 
   .swiper-slide-prev .student-card,
   .swiper-slide-next .student-card {
-    max-width: 620px;
+    max-width: 400px;
   }
 }
 

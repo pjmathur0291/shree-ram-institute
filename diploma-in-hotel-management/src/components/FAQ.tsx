@@ -65,27 +65,27 @@ const FAQ = () => {
     {
       question: "Q2. What is the duration of the diploma?",
       answer:
-        "The program typically spans over 1 to 2 years depending on the specialization chosen.",
+        "The program is designed as a fast-track course (typically 1 year)",
     },
     {
       question: "Q3. Are internships included?",
       answer:
-        "Yes, we provide hands-on training and mandatory internship programs with leading hotel chains.",
+        "Yes, internships start early during the program for real work exposure",
     },
     {
       question: "Q4. Will I get placement support?",
       answer:
-        "Absolutely. We have a dedicated placement cell that connects students with 5-star hotels globally.",
+        "Yes, the program is focused on placements in leading hotel brands",
     },
     {
       question: "Q5. Can I earn while studying?",
       answer:
-        "Yes, our flexible training schedules allow students to take up part-time opportunities in the industry.",
+        " Yes, through internships and training, students can earn and gain experience",
     },
     {
       question: "Q6. Is the diploma recognised?",
       answer:
-        "Yes, our diplomas are industry-recognised and valued by top hospitality brands worldwide.",
+        "Yes, it is recognised by the Government of Uttarakhand and supported by a government university",
     },
   ];
 

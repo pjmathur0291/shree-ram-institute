@@ -15,7 +15,7 @@ const WhyDHM = () => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.15, // Har card thoda late aayega
+        staggerChildren: 0.15,
       },
     },
   };
@@ -143,7 +143,7 @@ const WhyDHM = () => {
           </motion.div>
           <StatCard
             title={3}
-            suffix="Crores+"
+            suffix=" Crores+"
             desc="Scholarships Awarded"
             className="h-[48%]"
           />
@@ -196,7 +196,7 @@ const WhyDHM = () => {
               className="w-6 h-6 object-contain"
             />
           </div>
-          <h3 className="text-xl md:text-3xl font-bold mb-2 outfit-font">
+          <h3 className="text-xl md:text-3xl font-bold mb-2 outfit-font ">
             Global Opportunities
           </h3>
           <p className="text-[#FFFFFFCC] text-sm outfit-font md:mb-8">

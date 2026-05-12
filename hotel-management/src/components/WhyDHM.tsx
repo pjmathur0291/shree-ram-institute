@@ -32,12 +32,14 @@ const WhyDHM = () => {
   const StatCard = ({
     title,
     desc,
+    subdesc,
     suffix,
     className = "",
   }: {
     title: number;
     suffix: any;
     desc: string;
+    subdesc?: string;
     className?: string;
   }) => (
     <motion.div
@@ -51,7 +53,8 @@ const WhyDHM = () => {
       <h3 className="text-xl md:text-3xl font-bold mb-2 outfit-font">
         <Counter end={title} suffix={suffix} />
       </h3>
-      <p className="text-[#FFFFFFCC] text-sm outfit-font">{desc}</p>
+      <p className="text-[#FFFFFFCC] text-sm outfit-font pb-1">{desc}</p>
+      <p className="text-[#FFFFFFCC] text-sm outfit-font">{subdesc}</p>
     </motion.div>
   );
   return (
@@ -68,11 +71,10 @@ const WhyDHM = () => {
         className="text-center mb-16"
       >
         <h2 className="text-3xl md:text-5xl mb-4 font-bold leading-tight cormorant-garamond-font">
-          Why DHM at Shri Ram Institute
+          Why Shri Ram Institute?
         </h2>
         <p className="text-[#FFFFFF80] max-w-3xl mx-auto text-base outfit-font">
-          A training approach built on experience, exposure, and placement
-          outcomes.
+          Training backed by real experience and strong placement outcomes.
         </p>
       </motion.div>
 
@@ -93,10 +95,13 @@ const WhyDHM = () => {
         >
           <div>
             <h3 className="text-xl md:text-3xl font-bold mb-2 outfit-font">
-              <Counter end={25} suffix="+" />
+              <Counter end={3} suffix="Cr+" />
             </h3>
-            <p className="text-[#FFFFFFCC] mb-4 md:mb-auto text-sm outfit-font">
+            <p className="text-[#FFFFFFCC] mb-4 md:mb-auto text-sm outfit-font pb-1">
               Scholarships Awarded
+            </p>
+            <p className="text-[#FFFFFFCC] mb-4 md:mb-auto text-sm outfit-font">
+              To Students by Shri Ram Institute
             </p>
           </div>
           <div className="border-t border-white/5 pt-4 md:pt-10">
@@ -114,6 +119,7 @@ const WhyDHM = () => {
             title={28}
             suffix="LPA"
             desc="Highest Package Offered"
+            subdesc="In Hotel Placements"
             className="h-[48%]"
           />
           <StatCard
@@ -135,16 +141,16 @@ const WhyDHM = () => {
           >
             <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full blur-3xl"></div>
             <h3 className="text-xl md:text-3xl font-bold mb-2 outfit-font">
-              <Counter end={6.4} suffix="LPA" />
+              <Counter end={6.4} decimals={1} suffix="LPA" />
             </h3>
             <p className="text-[#FFFFFFCC] text-sm outfit-font">
               Average Package Offered
             </p>
           </motion.div>
           <StatCard
-            title={3}
-            suffix="Crores+"
-            desc="Scholarships Awarded"
+            title={25}
+            suffix="+ Years"
+            desc="of Excellence"
             className="h-[48%]"
           />
         </div>

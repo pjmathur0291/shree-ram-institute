@@ -125,7 +125,7 @@ const CareerPath = () => {
                 />
               </div>
               <div className="p-4">
-                <h4 className="text-white font-semibold text-lg md:text-xl mb-2 outfit-font">
+                <h4 className="text-white font-semibold text-base md:text-lg md:mb-2 outfit-font">
                   {card.title}
                 </h4>
                 <p className="text-[#FFFFFFCC] text-sm leading-relaxed outfit-font">

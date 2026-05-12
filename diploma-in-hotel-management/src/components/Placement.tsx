@@ -44,7 +44,7 @@ const Placement = () => {
               </span>
               <div className="flex flex-col gap-3">
                 <span className="text-5xl md:text-6xl font-serif font-bold cormorant-garamond-font">
-                  <Counter end={97.2} suffix="%" />
+                  <Counter end={97.2} decimals={1} suffix="%" />
                 </span>
                 <span className="text-[#B1B1B1] font-medium text-base mt-1 outfit-font">
                   Placement Record

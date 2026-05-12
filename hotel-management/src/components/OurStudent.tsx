@@ -39,12 +39,12 @@ const OurStudent = () => {
 
   return (
     <section
-      className="text-white py-14 md:py-20 px-6 overflow-hidden"
+      className="text-white py-14 md:py-20 px-6 overflow-x-hidden"
       style={{
         background: `url(${Background}) top center / cover no-repeat`,
       }}
     >
-      <div className="relative z-10 max-w-6xl mx-auto w-full">
+      <div className="relative z-10 max-w-7xl mx-auto w-full">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -67,16 +67,24 @@ const OurStudent = () => {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 2, staggerChildren: 0.2 }}
-          className="relative student-slider-container overflow-hidden"
+          className="relative student-slider-container overflow-x-hidden"
         >
           <Swiper
             effect={"coverflow"}
             grabCursor={true}
             centeredSlides={true}
             loop={true}
-            speed={100}
-            spaceBetween={20}
+            speed={800}
             slidesPerView={1}
+            spaceBetween={5}
+            coverflowEffect={{
+              rotate: 0,
+              stretch: 0,
+              depth: 120,
+              modifier: 1.5,
+              slideShadows: false,
+              scale: 0.9,
+            }}
             breakpoints={{
               768: {
                 slidesPerView: 2,
@@ -99,7 +107,7 @@ const OurStudent = () => {
               prevEl: ".swiper-button-prev-custom",
             }}
             modules={[Pagination, Navigation]}
-            className="mySwiper !overflow-hidden !pb-10"
+            className="mySwiper !overflow-x-hidden !pb-10"
           >
             {testimonials.map((item, index) => (
               <SwiperSlide key={item.id} className="student-slide">
