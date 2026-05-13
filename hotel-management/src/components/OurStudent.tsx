@@ -117,7 +117,7 @@ const OurStudent = () => {
                   viewport={{ once: true }}
                   className="student-card shadow-2xl border border-white/5"
                 >
-                  <div className="relative w-full h-full overflow-hidden rounded-2xl">
+                  <div className="relative w-full aspect-video overflow-hidden rounded-2xl">
                     <iframe
                       className="w-full h-full object-fit-cover"
                       src={`${item.videoId}&autoplay=0&modestbranding=1&rel=0&controls=1&showinfo=0&iv_load_policy=3&fs=0`}
