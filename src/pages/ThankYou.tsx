@@ -11,9 +11,12 @@ const ThankYou = () => {
               <CheckCircle2 className="h-6 w-6 text-primary" />
             </div>
             <div className="flex-1">
-              <h1 className="font-display text-3xl font-bold text-foreground">Thank you!</h1>
+              <h1 className="font-display text-3xl font-bold text-foreground">
+                Thank you!
+              </h1>
               <p className="mt-2 text-muted-foreground">
-                We’ve received your request. Our counselor will reach out soon with course details and the next steps.
+                We’ve received your request. Our counselor will reach out soon
+                with course details and the next steps.
               </p>
             </div>
           </div>
@@ -45,7 +48,10 @@ const ThankYou = () => {
               Back to home
             </Link>
             <span className="text-muted-foreground text-sm">•</span>
-            <a href="/#contact" className="text-sm font-semibold text-foreground hover:text-primary transition-colors">
+            <a
+              href="/#contact"
+              className="text-sm font-semibold text-foreground hover:text-primary transition-colors"
+            >
               Submit another request
             </a>
           </div>

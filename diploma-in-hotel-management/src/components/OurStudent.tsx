@@ -13,27 +13,27 @@ const OurStudent = () => {
   const testimonials = [
     {
       id: 1,
-      image: StudentImage,
+      videoId: "https://www.youtube.com/embed/_RuTrdVfeRE?si=WVz3_UwJ4c2xwiuo",
     },
     {
       id: 2,
-      image: StudentImage,
+      videoId: "https://www.youtube.com/embed/4d_wvTTuzlo?si=g6k1ZTkiuOmXCifM",
     },
     {
       id: 3,
-      image: StudentImage,
+      videoId: "https://www.youtube.com/embed/3y11-xMm2BU?si=Hl3zXdBB1-5kQt4Z",
     },
     {
       id: 4,
-      image: StudentImage,
+      videoId: "https://www.youtube.com/embed/kPKFlPa5lNU?si=hhhhRP0bNsXTj8nV",
     },
     {
       id: 5,
-      image: StudentImage,
+      videoId: "https://www.youtube.com/embed/DfadaXhIKG8?si=4mHq9vayfpclgyDl",
     },
     {
       id: 6,
-      image: StudentImage,
+      videoId: "https://www.youtube.com/embed/LqSPWXBQmdw?si=s9KV-aS0rPa-aEff",
     },
   ];
 
@@ -117,11 +117,16 @@ const OurStudent = () => {
                   viewport={{ once: true }}
                   className="student-card shadow-2xl border border-white/5"
                 >
-                  <img
-                    src={item.image}
-                    alt="Student testimonial"
-                    className="w-full h-full object-cover aspect-video"
-                  />
+                  <div className="relative w-full aspect-video overflow-hidden rounded-2xl">
+                    <iframe
+                      className="w-full h-full object-fit-cover"
+                      src={`${item.videoId}&autoplay=0&modestbranding=1&rel=0&controls=1&showinfo=0&iv_load_policy=3&fs=0`}
+                      title="YouTube video player"
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    ></iframe>
+                  </div>
                 </motion.div>
               </SwiperSlide>
             ))}
