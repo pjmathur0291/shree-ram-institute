@@ -67,6 +67,7 @@ const HeroBanner = () => {
   };
   return (
     <section
+      id="enquiry-form"
       className="flex flex-col gap-[44px] md:gap-[60px] items-center py-[60px] px-[10px] md:py-[90px] lg:px-[70px]"
       style={{
         background: `url(${Hero}) top center / cover no-repeat`,
@@ -167,7 +168,11 @@ const HeroBanner = () => {
                 Our counselor will contact you within 30 minutes
               </p>
 
-              <form onSubmit={handleSubmit} className="space-y-4">
+              <form
+                onSubmit={handleSubmit}
+                className="space-y-4"
+                id="enquiry-form"
+              >
                 <input
                   type="text"
                   required

@@ -64,24 +64,42 @@ const Cta = () => {
             viewport={{ once: true }}
             className="flex flex-wrap gap-4"
           >
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="w-fit outfit-font bg-white text-[#931B1C] font-bold px-4 py-2 rounded-sm uppercase text-sm"
-            >
-              Apply Now
-            </motion.button>
+            <a href="#enquiry-form">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => {
+                  document.getElementById("enquiry-form")?.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start",
+                  });
+                }}
+                className="w-fit outfit-font bg-white text-[#931B1C] font-bold px-4 py-2 rounded-sm uppercase text-sm"
+              >
+                Apply Now
+              </motion.button>
+            </a>
 
-            <motion.button
-              whileHover={{
-                scale: 1.05,
-                backgroundColor: "rgba(255,255,255,0.1)",
-              }}
-              whileTap={{ scale: 0.95 }}
-              className="border border-[#FFFFFF59] text-[#FFFFFFD9] font-bold text-sm px-4 py-2 rounded-sm font-medium w-fit outfit-font"
-            >
-              Know More
-            </motion.button>
+            <a href="#request-a-callback">
+              <motion.button
+                whileHover={{
+                  scale: 1.05,
+                  backgroundColor: "rgba(255,255,255,0.1)",
+                }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => {
+                  document
+                    .getElementById("request-a-callback")
+                    ?.scrollIntoView({
+                      behavior: "smooth",
+                      block: "start",
+                    });
+                }}
+                className="border border-[#FFFFFF59] text-[#FFFFFFD9] font-bold text-sm px-4 py-2 rounded-sm font-medium w-fit outfit-font"
+              >
+                Know More
+              </motion.button>
+            </a>
           </motion.div>
         </div>
       </motion.div>
