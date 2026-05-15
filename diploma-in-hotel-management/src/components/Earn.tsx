@@ -99,7 +99,7 @@ const Earn = () => {
             <img
               src={Student}
               alt="Professional Student Chef"
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover scale-[1.24]"
             />
           </motion.div>
         </div>
@@ -145,7 +145,7 @@ const Earn = () => {
             <img
               src={Student}
               alt="Professional Student Chef"
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover scale-[1.24]"
             />
           </motion.div>
         </div>
