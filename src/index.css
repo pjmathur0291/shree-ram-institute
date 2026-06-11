@@ -97,6 +97,14 @@ html {
   font-family: "Cormorant Garamond", serif;
 }
 
+.inter-font {
+  font-family: "Inter", sans-serif;
+}
+
+.Montserrat-font {
+  font-family: "Montserrat", sans-serif;
+}
+
 @layer base {
   * {
     @apply border-border;

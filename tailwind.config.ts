@@ -11,6 +11,7 @@ export default {
     "./bachelors-in-hotel-management/**/*.{ts,tsx}",
     "./diploma-in-hotel-management/**/*.{ts,tsx}",
     "./hotel-management/**/*.{ts,tsx}",
+    "./nursing/**/*.{ts,tsx}",
   ],
   prefix: "",
   theme: {
