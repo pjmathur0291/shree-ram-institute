@@ -28,7 +28,7 @@ const App = () => (
           />
           <Route path="/diploma-in-hotel-management" element={<DHM />} />
           <Route path="/hotel-management" element={<HM />} />
-           <Route path="/nursing" element={<Nursing />} />
+          <Route path="/nursing" element={<Nursing />} />
           <Route path="/thank-you" element={<ThankYou />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
