@@ -110,7 +110,7 @@ const Header = () => {
 
             {/* BUTTON */}
             <div className="hidden lg:block">
-              <motion.button
+              <motion.a href="#AdmissionForm"
                 whileHover={{
                   scale: 1.04,
                 }}
@@ -119,7 +119,7 @@ const Header = () => {
               >
                 Apply Online 2026
                 <ArrowUpRight size={18} />
-              </motion.button>
+              </motion.a>
             </div>
 
             {/* MOBILE BUTTON */}
@@ -197,10 +197,10 @@ const Header = () => {
                 })}
 
                 {/* BUTTON */}
-                <button className="mt-6 bg-[#B33A3B] hover:bg-[#98292A] text-white rounded-full py-4 font-semibold flex items-center justify-center gap-2 transition-all duration-300">
+                <a href="#AdmissionForm" className="mt-6 bg-[#B33A3B] hover:bg-[#98292A] text-white rounded-full py-4 font-semibold flex items-center justify-center gap-2 transition-all duration-300">
                   Apply Online 2026
                   <ArrowUpRight size={18} />
-                </button>
+                </a>
               </div>
             </motion.div>
           </>

@@ -80,18 +80,18 @@ const LearnBeyond = () => {
             </div>
 
             {/* BUTTON */}
-            <motion.button
+            <motion.a href="#AdmissionForm"
               whileHover={{
                 scale: 1.04,
               }}
               whileTap={{
                 scale: 0.96,
               }}
-              className="mt-10 bg-[#B33A3B] hover:bg-[#9D2B2C] text-white rounded-[12px] px-7 py-4 text-[14px] tracking-[1px] font-black uppercase flex items-center gap-2 transition-all duration-300"
+              className="w-fit mt-10 bg-[#B33A3B] hover:bg-[#9D2B2C] text-white rounded-[12px] px-7 py-4 text-[14px] tracking-[1px] font-black uppercase flex items-center gap-2 transition-all duration-300"
             >
               GET ADMISSION DETAILS
               <ArrowRight size={18} />
-            </motion.button>
+            </motion.a>
           </motion.div>
         </div>
       </div>

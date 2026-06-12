@@ -86,7 +86,7 @@ const AdmissionJourney = () => {
         </motion.div>
 
         {/* Central Apply Button */}
-       <motion.button
+       <motion.a href="#AdmissionForm"
               whileHover={{
                 scale: 1.04,
               }}
@@ -97,7 +97,7 @@ const AdmissionJourney = () => {
             >
              Apply Now
               <ArrowRight size={18} />
-            </motion.button>
+            </motion.a>
         
         <motion.div 
           initial={{ opacity: 0, y: 30 }}
@@ -132,13 +132,13 @@ const AdmissionJourney = () => {
 
             {/* Right Action Button */}
             <div className="shrink-0 flex items-center">
-              <motion.button 
+              <motion.a  href="#AdmissionForm"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               className="w-fit mx-auto bg-[#B33A3B] hover:bg-[#9D2B2C] text-white rounded-[12px] px-7 py-4 text-[14px] tracking-[1px] font-black uppercase flex items-center gap-2 transition-all duration-300"
               >
                 Apply Now
-              </motion.button>
+              </motion.a>
             </div>
 
           </div>

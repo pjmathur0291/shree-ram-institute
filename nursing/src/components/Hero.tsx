@@ -142,7 +142,7 @@ Environment
           </div>
 
           {/* RIGHT SIDE */}
-          <div className="flex justify-center lg:justify-end">
+          <div className="flex justify-center lg:justify-end" id="AdmissionForm">
             
             {/* FORM CARD */}
            <div className="w-full max-w-[420px] bg-white rounded-[24px] border border-stone-200/50 shadow-[0_20px_50px_0_rgba(179,58,59,0.08)] relative">
