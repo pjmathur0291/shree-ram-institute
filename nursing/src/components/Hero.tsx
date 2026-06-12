@@ -1,23 +1,116 @@
-import React, { useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import BgImage from "../assets/Section.webp";
 import CheckIcon from '../assets/Component2.svg';
 import Arrow from '../assets/Component3.svg'
 import { useNavigate } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 
+const NURSING_NOTIFY_EMAIL = "pranjal@mediagarh.com";
+const UTM_STORAGE_KEY = "sri:utm";
+
+type UtmFields = {
+  utmSource: string;
+  utmMedium: string;
+  utmCampaign: string;
+  utmTerm: string;
+  utmKeyword: string;
+};
+
+function getUtmFromLocation(): UtmFields {
+  const params = new URLSearchParams(window.location.search);
+  return {
+    utmSource: params.get("utm_source") ?? "",
+    utmMedium: params.get("utm_medium") ?? "",
+    utmCampaign: params.get("utm_campaign") ?? "",
+    utmTerm: params.get("utm_term") ?? "",
+    utmKeyword: params.get("utm_keyword") ?? "",
+  };
+}
+
+function safeReadStoredUtm(): Partial<UtmFields> {
+  try {
+    const raw = window.localStorage.getItem(UTM_STORAGE_KEY);
+    if (!raw) return {};
+    const parsed = JSON.parse(raw) as Partial<UtmFields> | null;
+    return parsed && typeof parsed === "object" ? parsed : {};
+  } catch {
+    return {};
+  }
+}
+
+async function submitToWebhook(url: string, payload: URLSearchParams) {
+  const requestUrl = url.includes("?") ? `${url}&${payload.toString()}` : `${url}?${payload.toString()}`;
+  await fetch(requestUrl, { method: "GET" });
+}
+
+async function sendNursingEmail(payload: URLSearchParams, nursingEmailWebhookUrl?: string) {
+  if (nursingEmailWebhookUrl) {
+    await submitToWebhook(nursingEmailWebhookUrl, payload);
+    return;
+  }
+
+  await fetch(`https://formsubmit.co/ajax/${encodeURIComponent(NURSING_NOTIFY_EMAIL)}`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+    body: JSON.stringify({
+      _subject: "New B.Sc Nursing Admission Inquiry",
+      _captcha: "false",
+      name: payload.get("name"),
+      email: payload.get("email"),
+      phone: payload.get("phone"),
+      state: payload.get("state"),
+      city: payload.get("city"),
+      course: payload.get("course"),
+      pageUrl: payload.get("pageUrl"),
+      submittedAt: payload.get("submittedAt"),
+      utm_source: payload.get("utm_source"),
+      utm_medium: payload.get("utm_medium"),
+      utm_campaign: payload.get("utm_campaign"),
+      utm_term: payload.get("utm_term"),
+      utm_keyword: payload.get("utm_keyword"),
+    }),
+  });
+}
+
 const Hero = () => {
   const navigate = useNavigate();
-  const [isOpen, setIsOpen] = useState(false);
+  const leadsheetWebhookUrl = useMemo(() => import.meta.env.VITE_LEADSHEET_WEBHOOK_URL as string | undefined, []);
+  const crmApiUrl = useMemo(() => import.meta.env.VITE_CRM_API_URL as string | undefined, []);
+  const nursingEmailWebhookUrl = useMemo(() => import.meta.env.VITE_NURSING_EMAIL_WEBHOOK_URL as string | undefined, []);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  
-  // Exact same fields matching the new premium UI
   const [formData, setFormData] = useState({
     name: "",
-    phone: "",
     email: "",
+    phone: "",
+    state: "",
     city: "",
-    program: "Clinical Hospital & Surgical Nursing",
   });
+  const [utm, setUtm] = useState<UtmFields>(() => {
+    const fromUrl = getUtmFromLocation();
+    const stored = safeReadStoredUtm();
+    return {
+      utmSource: fromUrl.utmSource || stored.utmSource || "",
+      utmMedium: fromUrl.utmMedium || stored.utmMedium || "",
+      utmCampaign: fromUrl.utmCampaign || stored.utmCampaign || "",
+      utmTerm: fromUrl.utmTerm || stored.utmTerm || "",
+      utmKeyword: fromUrl.utmKeyword || stored.utmKeyword || "",
+    };
+  });
+
+  useEffect(() => {
+    const fromUrl = getUtmFromLocation();
+    if (fromUrl.utmSource || fromUrl.utmMedium || fromUrl.utmCampaign || fromUrl.utmTerm || fromUrl.utmKeyword) {
+      setUtm(fromUrl);
+      try {
+        window.localStorage.setItem(UTM_STORAGE_KEY, JSON.stringify(fromUrl));
+      } catch {
+        // ignore
+      }
+    }
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -26,15 +119,31 @@ const Hero = () => {
     try {
       const payload = new URLSearchParams({
         name: formData.name.trim(),
-        phone: formData.phone.trim(),
         email: formData.email.trim(),
+        phone: formData.phone.trim(),
+        state: formData.state.trim(),
         city: formData.city.trim(),
-        course: formData.program,
+        course: "B.Sc Nursing",
+        message: `State: ${formData.state.trim()}, City: ${formData.city.trim()}`,
         pageUrl: window.location.href,
         submittedAt: new Date().toISOString().slice(0, 10),
+        utm_source: utm.utmSource,
+        utm_medium: utm.utmMedium,
+        utm_campaign: utm.utmCampaign,
+        utm_term: utm.utmTerm,
+        utm_keyword: utm.utmKeyword,
       });
-      
-      // Yahan aap apna fetch/Google Apps Script call track kar sakte hain
+
+      await sendNursingEmail(payload, nursingEmailWebhookUrl);
+
+      if (crmApiUrl) {
+        await submitToWebhook(crmApiUrl, payload);
+      }
+
+      if (leadsheetWebhookUrl) {
+        await submitToWebhook(leadsheetWebhookUrl, payload);
+      }
+
       navigate("/thank-you");
     } catch (error) {
       console.error("Submission failed", error);
@@ -185,11 +294,15 @@ Environment
 
             {/* Form Fields Area */}
             <form onSubmit={handleSubmit} className="p-6 space-y-4 md:space-y-6 bg-white rounded-b-[24px]">
-              
-              {/* FULL NAME */}
+              <input type="hidden" name="utm_source" value={utm.utmSource} />
+              <input type="hidden" name="utm_medium" value={utm.utmMedium} />
+              <input type="hidden" name="utm_campaign" value={utm.utmCampaign} />
+              <input type="hidden" name="utm_term" value={utm.utmTerm} />
+              <input type="hidden" name="utm_keyword" value={utm.utmKeyword} />
+
               <div>
                 <label className="text-[11px] font-bold text-gray-700 tracking-wide uppercase block">
-                  Full Name <span className="text-red-500">*</span>
+                  Name <span className="text-red-500">*</span>
                 </label>
                 <input
                   type="text"
@@ -201,74 +314,70 @@ Environment
                 />
               </div>
 
-              {/* TWIN GRID FIELDS: PHONE & EMAIL */}
-              <div className="grid grid-cols-1 sm:grid-cols-12 gap-4 ">
-                <div className="sm:col-span-6">
-                  <label className="text-[11px] font-bold text-gray-700 tracking-wide uppercase block">
-                    Phone Number <span className="text-red-500">*</span>
-                  </label>
-                  <div className="relative mt-1.5 flex items-center">
-                    <span className="absolute left-4 text-sm text-gray-400 font-medium">+91</span>
-                    <input
-                      type="tel"
-                      required
-                      pattern="[0-9]{10}"maxLength={10}  
-      value={formData.phone}
-      onChange={(e) => { 
-        const onlyNums = e.target.value.replace(/[^0-9]/g, "");
-        setFormData({ ...formData, phone: onlyNums });
-      }}  
-                      placeholder="9012345678"
-                      className="w-full bg-white border border-stone-200 rounded-[12px] pl-12 pr-4 py-3 text-sm text-gray-800 placeholder-gray-400 outline-none focus:border-[#B33A3B] transition-all"
-                    />
-                  </div>
-                </div>
-
-                <div className="sm:col-span-6">
-                  <label className="text-[11px] font-bold text-gray-700 tracking-wide uppercase block">
-                    Email ID
-                  </label>
-                  <input
-                    type="email"
-                    required
-                    value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    placeholder="your@email.com"
-                    className="w-full mt-1.5 bg-white border border-stone-200 rounded-[12px] px-4 py-3 text-sm text-gray-800 placeholder-gray-400 outline-none focus:border-[#B33A3B] transition-all"
-                  />
-                </div>
-              </div>
-
-              {/* CITY / CURRENT HABITAT */}
               <div>
                 <label className="text-[11px] font-bold text-gray-700 tracking-wide uppercase block">
-                  City / Current Habitat <span className="text-red-500">*</span>
+                  Email <span className="text-red-500">*</span>
                 </label>
                 <input
-                  type="text"
+                  type="email"
                   required
-                  value={formData.city}
-                  onChange={(e) => setFormData({ ...formData, city: e.target.value })}
-                  placeholder="e.g. Dehradun"
+                  value={formData.email}
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  placeholder="your@email.com"
                   className="w-full mt-1.5 bg-white border border-stone-200 rounded-[12px] px-4 py-3 text-sm text-gray-800 placeholder-gray-400 outline-none focus:border-[#B33A3B] transition-all"
                 />
               </div>
 
-              {/* SPECIAL INTEREST FOCUS */}
               <div>
                 <label className="text-[11px] font-bold text-gray-700 tracking-wide uppercase block">
-                  Special Interest Focus
+                  Phone Number <span className="text-red-500">*</span>
                 </label>
-                <select required
-                  value={formData.program}
-                  onChange={(e) => setFormData({ ...formData, program: e.target.value })}
-                  className="w-full mt-1.5 bg-white border border-stone-200 rounded-[12px] px-4 py-3 text-sm text-gray-700 outline-none focus:border-[#B33A3B] appearance-none cursor-pointer bg-[url('data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%236b7280%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpolyline%20points%3D%226%209%2012%2015%2018%209%22%3E%3C%2Fpolyline%3E%3C%2Fsvg%3E')] bg-[length:1em_1em] bg-[right_1rem_center] bg-no-repeat transition-all"
-                >
-                  <option value="Clinical Hospital & Surgical Nursing">Clinical Hospital & Surgical Nursing</option>
-                  <option value="B.Sc Nursing (4 Years)">B.Sc Nursing (4 Years)</option>
-                  <option value="General Nursing & Midwifery (GNM)">General Nursing & Midwifery (GNM)</option>
-                  <option value="Auxiliary Nurse Midwifery (ANM)">Auxiliary Nurse Midwifery (ANM)</option>
-                </select>
+                <div className="relative mt-1.5 flex items-center">
+                  <span className="absolute left-4 text-sm text-gray-400 font-medium">+91</span>
+                  <input
+                    type="tel"
+                    required
+                    pattern="[0-9]{10}"
+                    maxLength={10}
+                    value={formData.phone}
+                    onChange={(e) => {
+                      const onlyNums = e.target.value.replace(/[^0-9]/g, "");
+                      setFormData({ ...formData, phone: onlyNums });
+                    }}
+                    placeholder="9012345678"
+                    className="w-full bg-white border border-stone-200 rounded-[12px] pl-12 pr-4 py-3 text-sm text-gray-800 placeholder-gray-400 outline-none focus:border-[#B33A3B] transition-all"
+                  />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label className="text-[11px] font-bold text-gray-700 tracking-wide uppercase block">
+                    State <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    required
+                    value={formData.state}
+                    onChange={(e) => setFormData({ ...formData, state: e.target.value })}
+                    placeholder="e.g. Uttarakhand"
+                    className="w-full mt-1.5 bg-white border border-stone-200 rounded-[12px] px-4 py-3 text-sm text-gray-800 placeholder-gray-400 outline-none focus:border-[#B33A3B] transition-all"
+                  />
+                </div>
+
+                <div>
+                  <label className="text-[11px] font-bold text-gray-700 tracking-wide uppercase block">
+                    City <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    required
+                    value={formData.city}
+                    onChange={(e) => setFormData({ ...formData, city: e.target.value })}
+                    placeholder="e.g. Dehradun"
+                    className="w-full mt-1.5 bg-white border border-stone-200 rounded-[12px] px-4 py-3 text-sm text-gray-800 placeholder-gray-400 outline-none focus:border-[#B33A3B] transition-all"
+                  />
+                </div>
               </div>
 
               {/* ACTION SUBMIT BUTTON */}
