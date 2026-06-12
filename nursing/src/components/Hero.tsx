@@ -5,7 +5,7 @@ import Arrow from '../assets/Component3.svg'
 import { useNavigate } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 
-const NURSING_NOTIFY_EMAIL = "pranjal@mediagarh.com";
+const NURSING_NOTIFY_EMAIL = "admissions.raminstitute@gmail.com";
 const UTM_STORAGE_KEY = "sri:utm";
 
 type UtmFields = {
