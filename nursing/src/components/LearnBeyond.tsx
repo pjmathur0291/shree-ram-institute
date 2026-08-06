@@ -1,23 +1,22 @@
-import React from "react";
-import { motion } from "framer-motion";
-import {  ArrowRight } from "lucide-react";
-import Img from "../assets/clinical_training.webp";
-import Icon from '../assets/Component1-6 (5).webp'
+import React from 'react';
+import { motion } from 'framer-motion';
+import { ArrowRight } from 'lucide-react';
+import Img from '../assets/clinical_training.webp';
+import Icon from '../assets/Component1-6 (5).webp';
 const points = [
-  {icon:Icon ,content:"Clinical Demonstrations"},
-  {icon:Icon ,content:"Hospital Exposure"},
-  {icon:Icon ,content:"Simulation Learning"},
-  {icon:Icon ,content:"Community Healthcare Visits"},
-  {icon:Icon ,content:"Patient Care Training"},
-  {icon:Icon ,content:"Professional Nursing Practices"},
+  { icon: Icon, content: 'Clinical Demonstrations' },
+  { icon: Icon, content: 'Hospital Exposure' },
+  { icon: Icon, content: 'Simulation Learning' },
+  { icon: Icon, content: 'Community Healthcare Visits' },
+  { icon: Icon, content: 'Patient Care Training' },
+  { icon: Icon, content: 'Professional Nursing Practices' },
 ];
 
 const LearnBeyond = () => {
   return (
     <section className="bg-[#FFFDFB] border-b border-[rgba(231, 229, 228, 0.60)] py-16 md:py-28 overflow-hidden ">
-      <div className="max-w-[1320px] mx-auto px-4 md:px-5"> 
+      <div className="max-w-[1320px] mx-auto px-4 md:px-5">
         <div className="grid lg:grid-cols-2 gap-14 items-center">
-          
           {/* IMAGE */}
           <motion.div
             initial={{ opacity: 0, x: -80 }}
@@ -42,7 +41,7 @@ const LearnBeyond = () => {
           >
             {/* TAG */}
             <div className="inline-flex items-center gap-2 bg-[#F8EAEA] border uppercase border-[rgba(179, 58, 59, 0.10)] text-[#B33A3B] rounded-full px-4 py-2 text-[11px]  font-black tracking-[1px]">
-             <img src={Icon} className="w-[11px] h-[11px]" />  Clinical Learning
+              <img src={Icon} className="w-[11px] h-[11px]" /> Clinical Learning
             </div>
 
             {/* TITLE */}
@@ -54,9 +53,8 @@ const LearnBeyond = () => {
 
             {/* DESC */}
             <p className="mt-6 text-[16px] leading-[26px] font-light text-[#57534D]">
-              Develop confidence through hands-on experiences that build real
-              clinical competence, practical understanding, and professional
-              nursing exposure.
+              Prepare with perfection in your academics for a successful nursing career at the best nursing training
+              institute Dehradun.
             </p>
 
             {/* FEATURES */}
@@ -68,19 +66,17 @@ const LearnBeyond = () => {
                   className="bg-white border border-[rgba(231, 229, 228, 0.50)] rounded-[12px] px-5 py-4 flex items-center gap-3"
                 >
                   <div className="rounded-full border border-red-600/[0.05] bg-[#FAF0F0] shadow-[0_1px_0_0_rgba(0,0,0,0.05)] shrink-0 h-[32px] w-[32px] flex items-center justify-center">
-                  <img src={item.icon}  className="h-[15px] w-[15px] shrink-0" />
+                    <img src={item.icon} className="h-[15px] w-[15px] shrink-0" />
                   </div>
-                  
 
-                  <span className="text-[14px] font-bold text-[#000] ">
-                    {item.content}
-                  </span>
+                  <span className="text-[14px] font-bold text-[#000] ">{item.content}</span>
                 </motion.div>
               ))}
             </div>
 
             {/* BUTTON */}
-            <motion.a href="#AdmissionForm"
+            <motion.a
+              href="#AdmissionForm"
               whileHover={{
                 scale: 1.04,
               }}

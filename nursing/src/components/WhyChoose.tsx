@@ -1,54 +1,54 @@
-import React from "react";
-import { motion } from "framer-motion"; 
-import BadgeCheck from '../assets/Container.webp'
-import Building2 from '../assets/Container-1.webp'
-import HeartPulse from '../assets/Container-2.webp'
-import MapPin from '../assets/Container-5.webp'
-import Users from '../assets/Container-4.webp'
-import FlaskConical from '../assets/Container-3.webp'
+import React from 'react';
+import { motion } from 'framer-motion';
+import BadgeCheck from '../assets/Container.webp';
+import Building2 from '../assets/Container-1.webp';
+import HeartPulse from '../assets/Container-2.webp';
+import MapPin from '../assets/Container-5.webp';
+import Users from '../assets/Container-4.webp';
+import FlaskConical from '../assets/Container-3.webp';
 
 const cards = [
   {
-    id: "01",
-    tag: "LEGACY",
+    id: '01',
+    tag: 'LEGACY',
     icon: BadgeCheck,
-    title: "26 Years of Academic Legacy",
-    desc: "Backed by over 26 years of educational excellence, Shri Ram Institute has earned the trust of students through its commitment to quality education, career-focused learning, and holistic student development.",
+    title: '26 Years of Academic Legacy',
+    desc: 'The trust of thousands of students and parents in our quality education and career-focused learning for over 26 years makes Shri Ram Institute one of the best colleges for BSc Nursing in Dehradun.',
   },
   {
-    id: "02",
-    tag: "CLINICAL",
+    id: '02',
+    tag: 'CLINICAL',
     icon: Building2,
-    title: "Govt. Hospital Clinical Affiliation",
-    desc: "Our affiliation with leading government hospitals strengthens the practical learning experience by connecting students with advanced healthcare environments and professional medical settings.",
+    title: 'Govt. Hospital Clinical Affiliation',
+    desc: 'Our affiliation with leading government hospitals strengthens the practical learning experience by connecting students with advanced healthcare environments and professional medical settings.',
   },
   {
-    id: "03",
-    tag: "TRAINING",
+    id: '03',
+    tag: 'TRAINING',
     icon: HeartPulse,
-    title: "Clinical Training Exposure",
-    desc: "Gain hands-on experience through structured clinical training, patient care observations, and supervised learning environments designed to build confidence and professional nursing skills.",
+    title: 'Clinical Training Exposure',
+    desc: 'Gain hands-on experience through structured clinical training, patient care observations, and supervised learning environments designed to build confidence and professional nursing skills.',
   },
   {
-    id: "04",
-    tag: "LOCATION",
+    id: '04',
+    tag: 'LOCATION',
     icon: MapPin,
-    title: "Prime Location in Dehradun",
-    desc: "Located in the heart of Dehradun, the campus offers excellent connectivity, access to major healthcare institutions, and a safe learning environment for students from across India.",
+    title: 'Prime Location in Dehradun',
+    desc: 'Located in the heart of Dehradun, the campus offers excellent connectivity, access to major healthcare institutions, and a safe learning environment for students from across India.',
   },
   {
-    id: "05",
-    tag: "STUDENT",
+    id: '05',
+    tag: 'STUDENT',
     icon: Users,
-    title: "Student-Centric Learning Approach",
-    desc: "We focus on academic guidance, skill development, and individual support to help students grow into compassionate professionals prepared for real-world responsibilities.",
+    title: 'Student-Centric Learning Approach',
+    desc: 'We focus on academic guidance, skill development, and individual support to help students grow into compassionate professionals prepared for real-world responsibilities.',
   },
   {
-    id: "06",
-    tag: "FACILITIES",
+    id: '06',
+    tag: 'FACILITIES',
     icon: FlaskConical,
-    title: "Modern Nursing Labs & Learning Facilities",
-    desc: "Learn in a professional academic environment supported by well-equipped nursing laboratories, smart learning resources, and modern campus infrastructure designed to enhance clinical understanding and skill development.",
+    title: 'Modern Nursing Labs & Learning Facilities',
+    desc: 'Benefit from truly valuable learning during your nursing course in Dehradun with practical training facilities in the form of well-equipped nursing laboratories and resources designed to enhance your clinical understanding and skills.',
   },
 ];
 
@@ -56,7 +56,6 @@ const WhyChoose = () => {
   return (
     <section className="bg-[#FFF] py-16 md:py-28 overflow-hidden">
       <div className="max-w-[1320px] mx-auto px-5 flex flex-col gap-[40px] md:[80px]">
-        
         {/* TOP */}
         <motion.div
           initial={{ opacity: 0, y: 60 }}
@@ -65,9 +64,9 @@ const WhyChoose = () => {
           viewport={{ once: true }}
           className="text-center"
         >
-         <div className="inline-flex bg-[#F8EAEA] border border-[#d6616233] text-[#B33A3B] rounded-full px-4 py-2 text-[11px] mb-4 font-black tracking-[1px]">
-           Why Choose Shri Ram College of Nursing
-            </div>
+          <div className="inline-flex bg-[#F8EAEA] border border-[#d6616233] text-[#B33A3B] rounded-full px-4 py-2 text-[11px] mb-4 font-black tracking-[1px]">
+            Why Choose Shri Ram College of Nursing
+          </div>
 
           <h2 className="mt-5 text-[28px] md:text-[36px] leading-[45px] font-extrabold text-[#1C1917] Montserrat-font tracking-[-1px]">
             Why Choose Shri Ram College of Nursing
@@ -118,9 +117,7 @@ const WhyChoose = () => {
                 </h3>
 
                 {/* DESC */}
-                <p className="mt-4 text-[13px] leading-[21.13px] font-light text-[#000] md:mb-4">
-                  {item.desc}
-                </p>
+                <p className="mt-4 text-[13px] leading-[21.13px] font-light text-[#000] md:mb-4">{item.desc}</p>
               </motion.div>
             );
           })}
